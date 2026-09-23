@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'core/constants/app_colors.dart';
+import 'core/services/codex_service.dart';
 import 'ui/screens/menu_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize persistent codex records
+  await CodexService.instance.init();
 
   // Lock orientation to portrait up
   await SystemChrome.setPreferredOrientations([

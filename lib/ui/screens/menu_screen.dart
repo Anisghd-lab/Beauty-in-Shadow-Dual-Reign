@@ -3,11 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/services/audio_service.dart';
+import '../../core/services/codex_service.dart';
 import '../../core/services/storage_service.dart';
 import '../../data/empire_deck.dart';
 import '../../data/street_deck.dart';
 import '../../models/game_state.dart';
 import '../../providers/game_controller.dart';
+import 'codex_screen.dart';
 import 'game_screen.dart';
 
 /// Campaign Selection Menu screen displaying the dual identities of the game:
@@ -36,6 +38,7 @@ class _MenuScreenState extends State<MenuScreen> {
     _storage = widget.storageService ?? StorageService.instance;
     _loadRecords();
     AudioService.instance.init();
+    CodexService.instance.init();
   }
 
   Future<void> _loadRecords() async {
@@ -126,6 +129,34 @@ class _MenuScreenState extends State<MenuScreen> {
                   ),
                 ),
               ],
+            ),
+
+            // Sleek Archives / Codex icon button in top left corner (opposite audio toggle)
+            Positioned(
+              top: 10,
+              left: 12,
+              child: Material(
+                color: Colors.transparent,
+                child: IconButton(
+                  key: const ValueKey('btn_open_codex'),
+                  icon: const Icon(
+                    Icons.auto_stories_rounded,
+                    color: AppColors.champagneGold,
+                    size: 22,
+                  ),
+                  tooltip: 'Archives / Le Grimoire des Ombres',
+                  onPressed: () {
+                    AudioService.instance.playClickSfx();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const CodexScreen(),
+                      ),
+                    ).then((_) {
+                      _loadRecords();
+                    });
+                  },
+                ),
+              ),
             ),
 
             // Sleek neon audio toggle in top right corner

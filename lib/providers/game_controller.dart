@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/foundation.dart';
 import '../core/services/audio_service.dart';
+import '../core/services/codex_service.dart';
 import '../models/card_model.dart';
 import '../models/game_state.dart';
 
@@ -249,10 +250,15 @@ class GameController extends ChangeNotifier {
     // Accumulate story flags
     if (impact.setFlags.isNotEmpty) {
       _state.activeFlags.addAll(impact.setFlags);
+      for (final flag in impact.setFlags) {
+        CodexService.instance.recordFlagIfAchievement(flag);
+      }
     }
 
     // Advance turn
     _state.dayCount += 1;
+    CodexService.instance.recordDecision();
+    CodexService.instance.recordSurvivalDays(_state.campaign, _state.dayCount);
 
     // Reset preview
     _swipePreview = SwipeDirection.none;
@@ -262,6 +268,13 @@ class GameController extends ChangeNotifier {
 
     if (_state.isGameOver) {
       AudioService.instance.playGameOverSfx();
+      if (_state.deathReason != null) {
+        CodexService.instance.recordDeath(
+          _state.campaign,
+          _state.deathReason!,
+          _state.dayCount,
+        );
+      }
       notifyListeners();
     } else {
       if (_state.gauge1 <= 20 ||
