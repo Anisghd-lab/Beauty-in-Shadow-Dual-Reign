@@ -49,6 +49,7 @@ class _GameScreenState extends State<GameScreen> {
               : CampaignType.street;
           controller.restart(nextCampaign);
         },
+        onReturnToMenu: () => Navigator.of(context).pop(),
       );
     }
 

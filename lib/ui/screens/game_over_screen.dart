@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
+import '../../core/services/storage_service.dart';
 import '../../models/game_state.dart';
 import '../../providers/game_controller.dart';
 
 /// Screen displayed when a playthrough ends due to gauge depletion or overflow.
 ///
 /// Features a brutal crime-scene neo-noir atmosphere, blood-crimson accents,
-/// detailed cause of death, days survived, and dual restart actions.
-class GameOverScreen extends StatelessWidget {
+/// detailed cause of death, days survived, high-score persistence, and triple navigation actions.
+class GameOverScreen extends StatefulWidget {
   /// Explicit [GameState] input (optional; falls back to Provider).
   final GameState? state;
 
@@ -19,12 +20,53 @@ class GameOverScreen extends StatelessWidget {
   /// Callback for switching to the alternate campaign (optional; falls back to Provider).
   final VoidCallback? onSwitchCampaign;
 
+  /// Callback for returning to the main menu (optional; falls back to Navigator.pop).
+  final VoidCallback? onReturnToMenu;
+
   const GameOverScreen({
     super.key,
     this.state,
     this.onRestartSame,
     this.onSwitchCampaign,
+    this.onReturnToMenu,
   });
+
+  @override
+  State<GameOverScreen> createState() => _GameOverScreenState();
+}
+
+class _GameOverScreenState extends State<GameOverScreen> {
+  bool _recordSaved = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.state != null) {
+      _saveRecord(widget.state!);
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_recordSaved) {
+      GameController? controller;
+      try {
+        controller = context.read<GameController?>();
+      } catch (_) {
+        controller = null;
+      }
+      final effectiveState =
+          widget.state ?? controller?.state ?? GameState.initial();
+      _saveRecord(effectiveState);
+    }
+  }
+
+  void _saveRecord(GameState state) {
+    if (_recordSaved) return;
+    _recordSaved = true;
+    StorageService.instance.saveRecordIfBest(state.campaign, state.dayCount);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,25 +77,38 @@ class GameOverScreen extends StatelessWidget {
       controller = null;
     }
 
-    final effectiveState = state ?? controller?.state ?? GameState.initial();
+    final effectiveState =
+        widget.state ?? controller?.state ?? GameState.initial();
+    if (!_recordSaved) {
+      _saveRecord(effectiveState);
+    }
+
     final currentCampaign = effectiveState.campaign;
     final otherCampaign = currentCampaign == CampaignType.street
         ? CampaignType.empire
         : CampaignType.street;
 
     void handleRestartSame() {
-      if (onRestartSame != null) {
-        onRestartSame!();
+      if (widget.onRestartSame != null) {
+        widget.onRestartSame!();
       } else {
         controller?.restart(currentCampaign);
       }
     }
 
     void handleSwitchCampaign() {
-      if (onSwitchCampaign != null) {
-        onSwitchCampaign!();
+      if (widget.onSwitchCampaign != null) {
+        widget.onSwitchCampaign!();
       } else {
         controller?.restart(otherCampaign);
+      }
+    }
+
+    void handleReturnToMenu() {
+      if (widget.onReturnToMenu != null) {
+        widget.onReturnToMenu!();
+      } else {
+        Navigator.of(context).pop();
       }
     }
 
@@ -72,7 +127,8 @@ class GameOverScreen extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -83,8 +139,8 @@ class GameOverScreen extends StatelessWidget {
                 // ==========================================
                 Center(
                   child: Container(
-                    width: 72,
-                    height: 72,
+                    width: 64,
+                    height: 64,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: AppColors.darkSurface,
@@ -95,7 +151,7 @@ class GameOverScreen extends StatelessWidget {
                       boxShadow: [
                         BoxShadow(
                           color: AppColors.statusDanger.withValues(alpha: 0.5),
-                          blurRadius: 20,
+                          blurRadius: 18,
                           spreadRadius: 2,
                         ),
                       ],
@@ -103,11 +159,11 @@ class GameOverScreen extends StatelessWidget {
                     child: const Icon(
                       Icons.close_rounded,
                       color: AppColors.statusDanger,
-                      size: 40,
+                      size: 36,
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
 
                 // Main Title: "RÈGNE BRISÉ"
                 Text(
@@ -116,7 +172,7 @@ class GameOverScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.cinzel(
                     color: AppColors.statusDanger,
-                    fontSize: 28,
+                    fontSize: 26,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 4.0,
                     shadows: [
@@ -127,13 +183,13 @@ class GameOverScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 10),
 
                 // Metrics Pill: "JOURS SURVÉCUS : X"
                 Center(
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 6.0),
+                        horizontal: 16.0, vertical: 5.0),
                     decoration: BoxDecoration(
                       color: AppColors.darkSurface,
                       borderRadius: BorderRadius.circular(20),
@@ -161,7 +217,7 @@ class GameOverScreen extends StatelessWidget {
                 // Cause of Death Box
                 // ==========================================
                 Container(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(18.0),
                   decoration: BoxDecoration(
                     color: AppColors.cardSurface,
                     borderRadius: BorderRadius.circular(16),
@@ -201,7 +257,7 @@ class GameOverScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 14),
+                      const SizedBox(height: 12),
 
                       // Death Message Narration
                       Text(
@@ -211,8 +267,8 @@ class GameOverScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: GoogleFonts.inter(
                           color: AppColors.text,
-                          fontSize: 14.5,
-                          height: 1.5,
+                          fontSize: 14.0,
+                          height: 1.45,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -220,7 +276,7 @@ class GameOverScreen extends StatelessWidget {
                   ),
                 ),
 
-                const Spacer(flex: 3),
+                const Spacer(flex: 2),
 
                 // ==========================================
                 // Succession Action Buttons
@@ -233,7 +289,7 @@ class GameOverScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.cardSurface,
                     foregroundColor: AppColors.text,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                       side: const BorderSide(
@@ -246,13 +302,13 @@ class GameOverScreen extends StatelessWidget {
                   child: Text(
                     'RECOMMENCER CE CAMP',
                     style: GoogleFonts.cinzel(
-                      fontSize: 13,
+                      fontSize: 12.5,
                       fontWeight: FontWeight.w700,
                       letterSpacing: 1.5,
                     ),
                   ),
                 ),
-                const SizedBox(height: 14),
+                const SizedBox(height: 10),
 
                 // Button 2: Inverser l'échiquier
                 OutlinedButton(
@@ -262,7 +318,7 @@ class GameOverScreen extends StatelessWidget {
                     foregroundColor: otherCampaign == CampaignType.street
                         ? AppColors.neonViolet
                         : AppColors.champagneGold,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
                     side: BorderSide(
                       color: (otherCampaign == CampaignType.street
                               ? AppColors.neonViolet
@@ -288,7 +344,40 @@ class GameOverScreen extends StatelessWidget {
                       Text(
                         'INVERSER L\'ÉCHIQUIER (${otherCampaign.displayName.toUpperCase()})',
                         style: GoogleFonts.cinzel(
-                          fontSize: 12.5,
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 8),
+
+                // Button 3: Retour au menu principal
+                TextButton(
+                  key: const ValueKey('btn_return_menu'),
+                  onPressed: handleReturnToMenu,
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppColors.textSecondary,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.home_outlined,
+                        size: 16,
+                        color: AppColors.textSecondary,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        'RETOUR AU MENU PRINCIPAL',
+                        style: GoogleFonts.cinzel(
+                          fontSize: 12.0,
                           fontWeight: FontWeight.w700,
                           letterSpacing: 1.2,
                         ),

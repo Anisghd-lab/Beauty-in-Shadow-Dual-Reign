@@ -161,19 +161,22 @@ class SwipeCardView extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
+                      const SizedBox(width: 8),
 
                       // Speaker Role
-                      Text(
-                        card.speakerRole,
-                        key: const ValueKey('card_speaker_role'),
-                        style: TextStyle(
-                          color: secondaryAccent,
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.6,
+                      Flexible(
+                        child: Text(
+                          card.speakerRole,
+                          key: const ValueKey('card_speaker_role'),
+                          style: TextStyle(
+                            color: secondaryAccent,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0.6,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
