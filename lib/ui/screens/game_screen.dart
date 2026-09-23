@@ -3,6 +3,7 @@ import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
+import '../../core/services/audio_service.dart';
 import '../../models/game_state.dart';
 import '../../providers/game_controller.dart';
 import '../widgets/gauge_bar.dart';
@@ -28,8 +29,22 @@ class _GameScreenState extends State<GameScreen> {
   final CardSwiperController _swiperController = CardSwiperController();
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        try {
+          final campaign = context.read<GameController>().state.campaign;
+          AudioService.instance.playBgm(campaign);
+        } catch (_) {}
+      }
+    });
+  }
+
+  @override
   void dispose() {
     _swiperController.dispose();
+    AudioService.instance.stopBgm();
     super.dispose();
   }
 
@@ -40,16 +55,24 @@ class _GameScreenState extends State<GameScreen> {
 
     // Seamlessly display GameOverScreen when terminal condition is reached
     if (state.isGameOver) {
+      AudioService.instance.stopBgm();
       return GameOverScreen(
         state: state,
-        onRestartSame: () => controller.restart(state.campaign),
+        onRestartSame: () {
+          AudioService.instance.playBgm(state.campaign);
+          controller.restart(state.campaign);
+        },
         onSwitchCampaign: () {
           final nextCampaign = state.campaign == CampaignType.street
               ? CampaignType.empire
               : CampaignType.street;
+          AudioService.instance.playBgm(nextCampaign);
           controller.restart(nextCampaign);
         },
-        onReturnToMenu: () => Navigator.of(context).pop(),
+        onReturnToMenu: () {
+          AudioService.instance.stopBgm();
+          Navigator.of(context).pop();
+        },
       );
     }
 
@@ -68,11 +91,11 @@ class _GameScreenState extends State<GameScreen> {
 
             const SizedBox(height: 12),
 
-            // 2. Sub-header: Status pill ("JOUR X — CAMPAGNE DE LA RUE / DE L'EMPIRE")
+            // 2. Sub-header: Status pill ("JOUR X — CAMPAGNE DE LA RUE / DE L'EMPIRE") + Audio Toggle
             Center(
               child: Container(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5.0),
+                    const EdgeInsets.symmetric(horizontal: 14.0, vertical: 5.0),
                 decoration: BoxDecoration(
                   color: AppColors.darkSurface,
                   borderRadius: BorderRadius.circular(20),
@@ -81,15 +104,43 @@ class _GameScreenState extends State<GameScreen> {
                     width: 1.0,
                   ),
                 ),
-                child: Text(
-                  'JOUR ${state.dayCount} — CAMPAGNE $campaignLabel',
-                  key: const ValueKey('status_pill_text'),
-                  style: GoogleFonts.cinzel(
-                    color: accentColor,
-                    fontSize: 11,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 1.2,
-                  ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'JOUR ${state.dayCount} — CAMPAGNE $campaignLabel',
+                      key: const ValueKey('status_pill_text'),
+                      style: GoogleFonts.cinzel(
+                        color: accentColor,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    ListenableBuilder(
+                      listenable: AudioService.instance,
+                      builder: (context, _) {
+                        final isMuted = AudioService.instance.isMuted;
+                        return InkWell(
+                          key: const ValueKey('btn_game_mute_toggle'),
+                          onTap: () => AudioService.instance.toggleMute(),
+                          borderRadius: BorderRadius.circular(10),
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 4.0),
+                            child: Icon(
+                              isMuted ? Icons.volume_off : Icons.volume_up,
+                              size: 14,
+                              color: isMuted
+                                  ? AppColors.textSecondary
+                                  : accentColor,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
+import '../../core/services/audio_service.dart';
 import '../../core/services/storage_service.dart';
 import '../../data/empire_deck.dart';
 import '../../data/street_deck.dart';
@@ -34,6 +35,7 @@ class _MenuScreenState extends State<MenuScreen> {
     super.initState();
     _storage = widget.storageService ?? StorageService.instance;
     _loadRecords();
+    AudioService.instance.init();
   }
 
   Future<void> _loadRecords() async {
@@ -48,6 +50,7 @@ class _MenuScreenState extends State<MenuScreen> {
   }
 
   void _launchCampaign(CampaignType campaign) {
+    AudioService.instance.playClickSfx();
     final deck = campaign == CampaignType.street
         ? [...initialStreetDeck, ...initialEmpireDeck]
         : [...initialEmpireDeck, ...initialStreetDeck];
@@ -72,52 +75,83 @@ class _MenuScreenState extends State<MenuScreen> {
     return Scaffold(
       backgroundColor: AppColors.obsidian,
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            // Top Section: Street Syndicate (Kimmie)
-            Expanded(
-              child: _CampaignPanel(
-                key: const ValueKey('campaign_street'),
-                title: 'LA RUE & LA NUIT',
-                subtitle: 'Kimmie — Survie Urbaine',
-                description: '4 Jauges : Dignité, Cash, Réputation, Discrétion.',
-                recordText: 'RECORD : $_streetRecord JOURS',
-                primaryAccent: AppColors.neonViolet,
-                secondaryAccent: AppColors.cyan,
-                gradientColors: [
-                  const Color(0xFF160E28),
-                  const Color(0xFF0F121C),
-                  AppColors.obsidian,
-                ],
-                icon: Icons.nightlife_rounded,
-                badgeKey: const ValueKey('badge_street'),
-                ctaText: 'INFILTRER LES BAS-FONDS',
-                onTap: () => _launchCampaign(CampaignType.street),
-              ),
+            Column(
+              children: [
+                // Top Section: Street Syndicate (Kimmie)
+                Expanded(
+                  child: _CampaignPanel(
+                    key: const ValueKey('campaign_street'),
+                    title: 'LA RUE & LA NUIT',
+                    subtitle: 'Kimmie — Survie Urbaine',
+                    description: '4 Jauges : Dignité, Cash, Réputation, Discrétion.',
+                    recordText: 'RECORD : $_streetRecord JOURS',
+                    primaryAccent: AppColors.neonViolet,
+                    secondaryAccent: AppColors.cyan,
+                    gradientColors: [
+                      const Color(0xFF160E28),
+                      const Color(0xFF0F121C),
+                      AppColors.obsidian,
+                    ],
+                    icon: Icons.nightlife_rounded,
+                    badgeKey: const ValueKey('badge_street'),
+                    ctaText: 'INFILTRER LES BAS-FONDS',
+                    onTap: () => _launchCampaign(CampaignType.street),
+                  ),
+                ),
+
+                // Central Divider with razor-thin metallic diagonal slash and crest
+                const _CentralDivider(),
+
+                // Bottom Section: Royal Empire (Mallory Bell)
+                Expanded(
+                  child: _CampaignPanel(
+                    key: const ValueKey('campaign_empire'),
+                    title: 'L\'EMPIRE BELL',
+                    subtitle: 'Mallory Bell — Dynastie & Crime',
+                    description: '4 Jauges : Prestige, Blanchiment, Impunité, Clan.',
+                    recordText: 'RECORD : $_empireRecord JOURS',
+                    primaryAccent: AppColors.champagneGold,
+                    secondaryAccent: AppColors.deepBlood,
+                    gradientColors: [
+                      const Color(0xFF1C150A),
+                      const Color(0xFF170A0F),
+                      AppColors.obsidian,
+                    ],
+                    icon: Icons.account_balance_rounded,
+                    badgeKey: const ValueKey('badge_empire'),
+                    ctaText: 'PRENDRE LE CONTRÔLE',
+                    onTap: () => _launchCampaign(CampaignType.empire),
+                  ),
+                ),
+              ],
             ),
 
-            // Central Divider with razor-thin metallic diagonal slash and crest
-            const _CentralDivider(),
-
-            // Bottom Section: Royal Empire (Mallory Bell)
-            Expanded(
-              child: _CampaignPanel(
-                key: const ValueKey('campaign_empire'),
-                title: 'L\'EMPIRE BELL',
-                subtitle: 'Mallory Bell — Dynastie & Crime',
-                description: '4 Jauges : Prestige, Blanchiment, Impunité, Clan.',
-                recordText: 'RECORD : $_empireRecord JOURS',
-                primaryAccent: AppColors.champagneGold,
-                secondaryAccent: AppColors.deepBlood,
-                gradientColors: [
-                  const Color(0xFF1C150A),
-                  const Color(0xFF170A0F),
-                  AppColors.obsidian,
-                ],
-                icon: Icons.account_balance_rounded,
-                badgeKey: const ValueKey('badge_empire'),
-                ctaText: 'PRENDRE LE CONTRÔLE',
-                onTap: () => _launchCampaign(CampaignType.empire),
+            // Sleek neon audio toggle in top right corner
+            Positioned(
+              top: 10,
+              right: 12,
+              child: ListenableBuilder(
+                listenable: AudioService.instance,
+                builder: (context, _) {
+                  final isMuted = AudioService.instance.isMuted;
+                  return Material(
+                    color: Colors.transparent,
+                    child: IconButton(
+                      key: const ValueKey('btn_audio_toggle'),
+                      icon: Icon(
+                        isMuted ? Icons.volume_off : Icons.volume_up,
+                        color: isMuted
+                            ? AppColors.textSecondary
+                            : AppColors.cyan,
+                        size: 22,
+                      ),
+                      tooltip: isMuted ? 'Activer le son' : 'Couper le son',
+                      onPressed: () => AudioService.instance.toggleMute(),
+                    ),
+                  );
+                },
               ),
             ),
           ],

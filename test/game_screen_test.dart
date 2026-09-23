@@ -5,8 +5,20 @@ import 'package:beauty_in_shadow/models/card_model.dart';
 import 'package:beauty_in_shadow/models/game_state.dart';
 import 'package:beauty_in_shadow/providers/game_controller.dart';
 import 'package:beauty_in_shadow/ui/screens/game_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:beauty_in_shadow/core/services/audio_service.dart';
+import 'helpers/mock_audioplayers.dart';
 
 void main() {
+  setUpAll(() {
+    setupMockAudioPlatform();
+  });
+
+  setUp(() {
+    SharedPreferences.setMockInitialValues({});
+    AudioService.instance = AudioService();
+  });
+
   Widget buildGameScreen(GameController controller) {
     return MaterialApp(
       home: ChangeNotifierProvider<GameController>.value(

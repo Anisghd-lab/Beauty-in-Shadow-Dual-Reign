@@ -1,8 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:beauty_in_shadow/main.dart';
+import 'helpers/mock_audioplayers.dart';
 
 void main() {
+  setUpAll(() {
+    setupMockAudioPlatform();
+  });
   testWidgets('BeautyInShadowApp boots into MenuScreen smoke test',
       (WidgetTester tester) async {
     SharedPreferences.setMockInitialValues({});

@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/foundation.dart';
+import '../core/services/audio_service.dart';
 import '../models/card_model.dart';
 import '../models/game_state.dart';
 
@@ -233,6 +234,7 @@ class GameController extends ChangeNotifier {
     if (_state.isGameOver || _currentCard == null) return;
 
     final impact = isRight ? _currentCard!.rightChoice : _currentCard!.leftChoice;
+    AudioService.instance.playSwipeSfx(isRight);
 
     // Apply gauge modifications with strict [0, 100] clamping
     _state.gauge1 = (_state.gauge1 + impact.deltaGauge1)
@@ -259,8 +261,15 @@ class GameController extends ChangeNotifier {
     _state.checkStatus();
 
     if (_state.isGameOver) {
+      AudioService.instance.playGameOverSfx();
       notifyListeners();
     } else {
+      if (_state.gauge1 <= 20 ||
+          _state.gauge2 <= 20 ||
+          _state.gauge3 <= 20 ||
+          _state.gauge4 <= 20) {
+        AudioService.instance.playWarningSfx();
+      }
       drawNextCard(forceCardId: impact.nextCardId);
     }
   }

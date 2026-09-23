@@ -7,9 +7,17 @@ import 'package:beauty_in_shadow/ui/screens/game_over_screen.dart';
 import 'package:beauty_in_shadow/ui/screens/game_screen.dart';
 import 'package:beauty_in_shadow/ui/screens/menu_screen.dart';
 
+import 'helpers/mock_audioplayers.dart';
+import 'package:beauty_in_shadow/core/services/audio_service.dart';
+
 void main() {
+  setUpAll(() {
+    setupMockAudioPlatform();
+  });
+
   setUp(() {
     SharedPreferences.setMockInitialValues({});
+    AudioService.instance = AudioService();
   });
 
   group('MenuScreen Widget Tests', () {
