@@ -133,12 +133,19 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                         ],
                       ),
-                      child: Icon(
+                      clipBehavior: Clip.antiAlias,
+                      child: Image.asset(
                         isStreet
-                            ? Icons.person_rounded
-                            : Icons.military_tech_rounded,
-                        size: 18,
-                        color: accentColor,
+                            ? 'assets/images/characters/street/ST_050_Kimmie.png'
+                            : 'assets/images/characters/empire/EM_050_Mallory_Bell.png',
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) => Icon(
+                          isStreet
+                              ? Icons.person_rounded
+                              : Icons.military_tech_rounded,
+                          size: 18,
+                          color: accentColor,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 10),

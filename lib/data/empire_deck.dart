@@ -25,7 +25,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Directeur Financier',
     speakerRole: 'Cabinet d\'audit Bell',
-    speakerAvatar: 'assets/images/characters/empire/cfo.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_001_Directeur_Financier.png',
+    interlocutorId: 'EM_001',
     dialogue:
         'Madame Bell, les fonds de départ proviennent de sociétés écrans des clubs de nuit. Les inspecteurs du fisc demandent les livres de comptes originaux.',
     leftChoice: ChoiceImpact(
@@ -48,7 +49,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Horace Bell',
     speakerRole: 'Patriarche de la dynastie',
-    speakerAvatar: 'assets/images/characters/empire/horace.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_002_Horace_Bell.png',
+    interlocutorId: 'EM_002',
     dialogue:
         'Nos clubs de strip-tease ont dégagé deux millions de dollars non déclarés ce mois-ci. Injecte-les sans délai dans le budget cosmétique.',
     leftChoice: ChoiceImpact(
@@ -72,7 +74,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Chimiste en Chef',
     speakerRole: 'Laboratoire R&D Bell',
-    speakerAvatar: 'assets/images/characters/empire/chemist.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_003_Chimiste_Chef.png',
+    interlocutorId: 'EM_003',
     dialogue:
         'La nouvelle formule de notre crème miracle est instable et hautement inflammable au contact de l\'air. Trois laborantins ont été gravement brûlés ce matin !',
     leftChoice: ChoiceImpact(
@@ -96,7 +99,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Roy Bell',
     speakerRole: 'Frère aîné & Bras armé',
-    speakerAvatar: 'assets/images/characters/empire/roy.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_004_Roy_Bell.png',
+    interlocutorId: 'EM_004',
     dialogue:
         'Un fouineur du Daily News prenait des photos de nos quais de livraison maritime. Je lui ai brisé les deux genoux dans un parking.',
     leftChoice: ChoiceImpact(
@@ -120,7 +124,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Journaliste TV',
     speakerRole: 'Édition spéciale en direct',
-    speakerAvatar: 'assets/images/characters/empire/tv_anchor.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_005_Journaliste_TV.png',
+    interlocutorId: 'EM_005',
     dialogue:
         'Madame Bell, des fuites anonymes affirment que Bell Cosmetics n\'est qu\'une gigantesque machine à blanchir pour la pègre locale. Que répondez-vous ?',
     leftChoice: ChoiceImpact(
@@ -143,7 +148,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Procureur Miller',
     speakerRole: 'Palais de Justice',
-    speakerAvatar: 'assets/images/characters/empire/prosecutor_miller.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_006_Procureur_Miller.png',
+    interlocutorId: 'EM_006',
     dialogue:
         'Un mandat fédéral vise vos entrepôts de transit portuaire. Ma campagne de réélection a un besoin urgent d\'un demi-million en dons discrets.',
     leftChoice: ChoiceImpact(
@@ -167,7 +173,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Le Gérant du Club',
     speakerRole: 'Émissaire du Velvet Lounge',
-    speakerAvatar: 'assets/images/characters/empire/club_delegate.png',
+    speakerAvatar: 'assets/images/characters/street/ST_003_Gerant_Club.png',
+    interlocutorId: 'ST_003',
     dialogue:
         'Madame, une employée nommée Kimmie mène une fronde parmi les danseuses du Velvet Lounge. Les transferts d\'argent liquide vers vos comptes sont totalement bloqués !',
     leftChoice: ChoiceImpact(
@@ -190,7 +197,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Jules Bell',
     speakerRole: 'Frère cadet & Logistique',
-    speakerAvatar: 'assets/images/characters/empire/jules.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_008_Jules_Bell.png',
+    interlocutorId: 'EM_008',
     dialogue:
         'Un cargo chargé de précurseurs chimiques non déclarés est retenu par les douanes du port autonome. Signe l\'autorisation présidentielle prioritaire.',
     leftChoice: ChoiceImpact(
@@ -213,7 +221,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Horace Bell',
     speakerRole: 'Patriarche de la dynastie',
-    speakerAvatar: 'assets/images/characters/empire/horace.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_002_Horace_Bell.png',
+    interlocutorId: 'EM_002',
     dialogue:
         'Tu as bien travaillé, Mallory. Mais Bell Cosmetics doit demeurer sous le contrôle de la descendance mâle. Cède 40% de tes actions à tes deux frères.',
     leftChoice: ChoiceImpact(
@@ -236,7 +245,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Raid fiscal fédéral',
     speakerRole: 'Agents IRS & Fédéraux',
-    speakerAvatar: 'assets/images/characters/empire/federal_raid.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_010_Raid_Fiscal.png',
+    interlocutorId: 'EM_010',
     dialogue:
         'Agents fédéraux ! Tous les serveurs informatiques et disques durs de Bell Cosmetics sont saisis sous mandat judiciaire immédiat.',
     leftChoice: ChoiceImpact(
@@ -263,7 +273,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Roy Bell',
     speakerRole: 'Frère aîné incontrôlable',
-    speakerAvatar: 'assets/images/characters/empire/roy_bloody.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_004_Roy_Bell.png',
+    interlocutorId: 'EM_004',
     dialogue:
         'Mallory, cette traînée de Kimmie m\'a subtilisé la clé USB dorée au club. Fais boucler le quartier avant que la presse ne la récupère !',
     leftChoice: ChoiceImpact(
@@ -289,7 +300,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Rain',
     speakerRole: 'Danseuse maîtresse-chanteuse',
-    speakerAvatar: 'assets/images/characters/empire/rain_blackmail.png',
+    speakerAvatar: 'assets/images/characters/street/ST_004_Rain.png',
+    interlocutorId: 'ST_004',
     dialogue:
         'Mme Bell, je sais exactement ce que contient la clé de Roy. 200 000\$ sur mon compte suisse ou j\'envoie la formule aux journalistes du Times.',
     leftChoice: ChoiceImpact(
@@ -316,7 +328,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Directrice Marketing',
     speakerRole: 'Gestion de crise réputationnelle',
-    speakerAvatar: 'assets/images/characters/empire/pr_director.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_013_Directrice_Marketing.png',
+    interlocutorId: 'EM_013',
     dialogue:
         'Des influenceurs dénoncent des brûlures chimiques après l\'essai du sérum Bell Éclat. Le mot-clé #PoisonBell explose sur les réseaux !',
     leftChoice: ChoiceImpact(
@@ -341,7 +354,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Commissaire de District',
     speakerRole: 'Haut fonctionnaire stipendié',
-    speakerAvatar: 'assets/images/characters/empire/police_commissioner.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_014_Commissaire_District.png',
+    interlocutorId: 'EM_014',
     dialogue:
         'Le détective Davis a réuni des preuves accablantes sur vos filiales maritimes. Pour un demi-million, je le mute à trois cents kilomètres.',
     leftChoice: ChoiceImpact(
@@ -367,7 +381,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Jules Bell',
     speakerRole: 'Frère cadet terrorisé',
-    speakerAvatar: 'assets/images/characters/empire/jules_scared.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_008_Jules_Bell.png',
+    interlocutorId: 'EM_008',
     dialogue:
         'Les douanes fouillent nos cuves de stockage au port ! Si j\'ouvre les vannes, 500 000 litres d\'alcool frelaté s\'écoulent dans la baie !',
     leftChoice: ChoiceImpact(
@@ -393,7 +408,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Conseil d\'Administration',
     speakerRole: 'Actionnaires historiques',
-    speakerAvatar: 'assets/images/characters/empire/board_members.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_016_Conseil_Administration.png',
+    interlocutorId: 'EM_016',
     dialogue:
         'L\'action Bell plonge de 18% ce matin. Horace Bell demande votre révocation immédiate au profit de son fils Jules !',
     leftChoice: ChoiceImpact(
@@ -419,7 +435,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Banquier Suisse',
     speakerRole: 'Gestionnaire de trust Zurich',
-    speakerAvatar: 'assets/images/characters/empire/swiss_banker.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_017_Banquier_Suisse.png',
+    interlocutorId: 'EM_017',
     dialogue:
         'Les autorités américaines demandent le blocage préventif de vos comptes à Zurich. Nous pouvons transférer 30 millions aux Caïmans avant minuit.',
     leftChoice: ChoiceImpact(
@@ -445,7 +462,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Horace Bell',
     speakerRole: 'Patriarche manipulateur',
-    speakerAvatar: 'assets/images/characters/empire/horace_hospital.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_002_Horace_Bell.png',
+    interlocutorId: 'EM_002',
     dialogue:
         'Mon cœur vacille, Mallory... Si tu respectes cette dynastie, cède immédiatement la gérance des filiales de nuit à tes frères sur mon lit d\'hôpital.',
     leftChoice: ChoiceImpact(
@@ -471,7 +489,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Journaliste du Times',
     speakerRole: 'Presse métropolitaine',
-    speakerAvatar: 'assets/images/characters/empire/investigative_reporter.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_019_Journaliste_Times.png',
+    interlocutorId: 'EM_019',
     dialogue:
         'Madame Bell, j\'ai obtenu les bordereaux de commande originaux des composants toxiques. Une interview exclusive ou mon papier paraît demain.',
     leftChoice: ChoiceImpact(
@@ -497,7 +516,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Ligne d\'urgence',
     speakerRole: 'Poste de commandement Bell',
-    speakerAvatar: 'assets/images/characters/empire/crisis_hotline.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_020_Ligne_Urgence.png',
+    interlocutorId: 'EM_020',
     dialogue:
         'Madame ! Roy a incendié le Velvet Lounge dans une rage aveugle ! Des explosions retentissent et les télévisions diffusent les images en direct !',
     leftChoice: ChoiceImpact(
@@ -527,7 +547,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Don Salazar',
     speakerRole: 'Parrain du Cartel Sud',
-    speakerAvatar: 'assets/images/characters/empire/salazar.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_021_Don_Salazar.png',
+    interlocutorId: 'EM_021',
     dialogue:
         'Le brasier de vos clubs a consumé huit millions de notre marchandise entreposée en sous-sol. Payez en liquide ou vos cargos ne passeront plus.',
     leftChoice: ChoiceImpact(
@@ -553,7 +574,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Silas',
     speakerRole: 'Chef de sécurité du manoir',
-    speakerAvatar: 'assets/images/characters/empire/silas.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_022_Silas.png',
+    interlocutorId: 'EM_022',
     dialogue:
         'Madame, nous avons détecté de la strychnine dans votre carafe de digestif. Les flacons proviennent de la suite privée de votre frère Roy.',
     leftChoice: ChoiceImpact(
@@ -579,7 +601,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Roy Bell',
     speakerRole: 'Frère paria traqué',
-    speakerAvatar: 'assets/images/characters/empire/roy_fugitive.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_004_Roy_Bell.png',
+    interlocutorId: 'EM_004',
     dialogue:
         'Tu m\'as déchu de mon héritage, Mallory ! Je vends la liste de nos clients corrompus au procureur si tu ne me verses pas cinq millions d\'or !',
     leftChoice: ChoiceImpact(
@@ -605,7 +628,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Juge Vandermeer',
     speakerRole: 'Haute Cour de Justice',
-    speakerAvatar: 'assets/images/characters/empire/judge_vandermeer.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_024_Juge_Vandermeer.png',
+    interlocutorId: 'EM_024',
     dialogue:
         'Le dossier d\'extorsion de Bell arrive dans ma chambre. Pour déclarer un non-lieu immédiat, ma fondation réclame une donation substantielle.',
     leftChoice: ChoiceImpact(
@@ -631,7 +655,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Jules Bell',
     speakerRole: 'Maillon faible des Bell',
-    speakerAvatar: 'assets/images/characters/empire/jules_wire.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_008_Jules_Bell.png',
+    interlocutorId: 'EM_008',
     dialogue:
         'Jules portait un émetteur fédéral sous sa doublure de costume. Il a déjà divulgué les numéros des conteneurs suspects aux agents du FBI !',
     leftChoice: ChoiceImpact(
@@ -657,7 +682,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Détective Davis',
     speakerRole: 'Enquêteur incorruptible',
-    speakerAvatar: 'assets/images/characters/empire/detective_davis.png',
+    speakerAvatar: 'assets/images/characters/street/ST_010_Detective_Davis.png',
+    interlocutorId: 'ST_010',
     dialogue:
         'Madame Bell, Kimmie nous a remis les doubles des registres bancaires du club. Vous disposez de 48 heures avant votre mise en examen.',
     leftChoice: ChoiceImpact(
@@ -682,7 +708,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'L\'Archiviste',
     speakerRole: 'Mémoire secrète du Clan',
-    speakerAvatar: 'assets/images/characters/empire/clan_archivist.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_027_Archiviste.png',
+    interlocutorId: 'EM_027',
     dialogue:
         'Les titres de propriété d\'origine et les preuves des premiers forfaits d\'Horace reposent dans cette cassette blindée en titane.',
     leftChoice: ChoiceImpact(
@@ -708,7 +735,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Analyste Financier',
     speakerRole: 'Wall Street',
-    speakerAvatar: 'assets/images/characters/empire/wall_street.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_028_Analyste_Financier.png',
+    interlocutorId: 'EM_028',
     dialogue:
         'Sans certification immédiate des comptes, la note d\'endettement de Bell Cosmetics s\'effondre au statut d\'obligation pourrie.',
     leftChoice: ChoiceImpact(
@@ -733,7 +761,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Horace Bell',
     speakerRole: 'Patriarche furieux',
-    speakerAvatar: 'assets/images/characters/empire/horace_wrath.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_002_Horace_Bell.png',
+    interlocutorId: 'EM_002',
     dialogue:
         'Tu as fait coffrer Roy et banni Jules ! Tu détruis mon œuvre séculaire ! Je convoque les journalistes pour te déshériter sur le champ !',
     leftChoice: ChoiceImpact(
@@ -759,7 +788,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Réseau SWIFT',
     speakerRole: 'Tempête bancaire',
-    speakerAvatar: 'assets/images/characters/empire/swift_ban.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_030_Reseau_SWIFT.png',
+    interlocutorId: 'EM_030',
     dialogue:
         'Le réseau SWIFT bloque tous les virements en devises du groupe. Quarante millions sont gelés entre New York et Genève.',
     leftChoice: ChoiceImpact(
@@ -788,7 +818,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Le Président du Tribunal',
     speakerRole: 'Cour de Justice Fédérale',
-    speakerAvatar: 'assets/images/characters/empire/federal_judge.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_031_President_Tribunal.png',
+    interlocutorId: 'EM_031',
     dialogue:
         'Madame Mallory Bell, vous êtes inculpée pour blanchiment aggravé en bande organisée, corruption d\'agents et complicité d\'incendie criminel.',
     leftChoice: ChoiceImpact(
@@ -813,7 +844,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Kimmie',
     speakerRole: 'Témoin-clé de l\'accusation',
-    speakerAvatar: 'assets/images/characters/empire/kimmie_witness.png',
+    speakerAvatar: 'assets/images/characters/street/ST_050_Kimmie.png',
+    interlocutorId: 'ST_050',
     dialogue:
         'Kimmie s\'avance à la barre avec un dossier scellé. Son témoignage peut anéantir quarante ans de règne en quelques phrases.',
     leftChoice: ChoiceImpact(
@@ -838,7 +870,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Silas',
     speakerRole: 'Chef de la sécurité',
-    speakerAvatar: 'assets/images/characters/empire/silas.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_006_Procureur_Miller.png',
+    interlocutorId: 'EM_006',
     dialogue:
         'Roy a ouvert le feu sur les marshals fédéraux dans un hangar portuaire. Il a succombé à ses blessures sur le macadam.',
     leftChoice: ChoiceImpact(
@@ -864,7 +897,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Procureur Miller',
     speakerRole: 'Magistrat aux abois',
-    speakerAvatar: 'assets/images/characters/empire/prosecutor_miller.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_022_Silas.png',
+    interlocutorId: 'EM_022',
     dialogue:
         'Le vent tourne, Mallory ! Si je ne vous incarcère pas, je coule avec vous. Livrez-moi votre père Horace et je vous épargne la détention.',
     leftChoice: ChoiceImpact(
@@ -890,7 +924,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Horace sous menottes',
     speakerRole: 'Chute du Patriarche',
-    speakerAvatar: 'assets/images/characters/empire/horace_arrested.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_002_Horace_Bell.png',
+    interlocutorId: 'EM_002',
     dialogue:
         'Menotté sous les flashs des reporters, Horace me jette avec haine : "Tu n\'es pas ma fille, tu es le fossoyeur de notre lignée !"',
     leftChoice: ChoiceImpact(
@@ -915,7 +950,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Mandataire Judiciaire',
     speakerRole: 'Liquidation provisoire',
-    speakerAvatar: 'assets/images/characters/empire/liquidator.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_036_Mandataire_Judiciaire.png',
+    interlocutorId: 'EM_036',
     dialogue:
         'Les scellés fédéraux sont posés sur l\'usine mère de formulation. Douze cents ouvriers sont renvoyés chez eux jusqu\'à nouvel ordre.',
     leftChoice: ChoiceImpact(
@@ -940,7 +976,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Don Salazar',
     speakerRole: 'Cartel impitoyable',
-    speakerAvatar: 'assets/images/characters/empire/salazar.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_021_Don_Salazar.png',
+    interlocutorId: 'EM_021',
     dialogue:
         'Sans Horace pour garantir les dettes, vous êtes nue face à nos armes. Cédez la majorité des parts ou votre villa brûlera cette nuit.',
     leftChoice: ChoiceImpact(
@@ -966,7 +1003,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Maître Sterling',
     speakerRole: 'Juriste de Wall Street',
-    speakerAvatar: 'assets/images/characters/empire/corporate_lawyer.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_038_Maitre_Sterling.png',
+    interlocutorId: 'EM_038',
     dialogue:
         'Nous pouvons dissoudre la holding familiale compromise et loger tous les actifs dans une entité immaculée prête pour le NASDAQ.',
     leftChoice: ChoiceImpact(
@@ -992,7 +1030,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Attaché de Presse',
     speakerRole: 'Stratège en communication',
-    speakerAvatar: 'assets/images/characters/empire/pr_officer.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_039_Attache_Presse.png',
+    interlocutorId: 'EM_039',
     dialogue:
         'Le magazine Forbes prépare sa couverture : "Mallory Bell, la dirigeante qui a purgé le crime pour bâtir un colosse cosmétique éthique."',
     leftChoice: ChoiceImpact(
@@ -1017,7 +1056,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Salle d\'attente dorée',
     speakerRole: 'Veille du verdict',
-    speakerAvatar: 'assets/images/characters/empire/boardroom_night.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_040_Salle_Attente.png',
+    interlocutorId: 'EM_040',
     dialogue:
         'Les jurés se retirent. Seuls deux chefs mineurs pèsent encore dans la balance. Le sceptre de la dynastie va tomber ou triompher.',
     leftChoice: ChoiceImpact(
@@ -1046,7 +1086,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Le Greffier Fédéral',
     speakerRole: 'Prononcé du jugement',
-    speakerAvatar: 'assets/images/characters/empire/acquittal.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_041_Greffier_Federal.png',
+    interlocutorId: 'EM_041',
     dialogue:
         'La cour prononce l\'abandon sans condition de toutes les poursuites pénales contre Mallory Bell. Vous quittez ce tribunal libre et réhabilitée.',
     leftChoice: ChoiceImpact(
@@ -1071,7 +1112,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Conseil d\'Administration',
     speakerRole: 'Derniers courtisans d\'Horace',
-    speakerAvatar: 'assets/images/characters/empire/board_purge.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_016_Conseil_Administration.png',
+    interlocutorId: 'EM_016',
     dialogue:
         'Les anciens partisans d\'Horace attendent leur sort autour de la table en acajou. Leurs lettres de révocation sont prêtes à être paraphées.',
     leftChoice: ChoiceImpact(
@@ -1097,7 +1139,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Chef de Marque Luxe',
     speakerRole: 'Division Haute Parfumerie',
-    speakerAvatar: 'assets/images/characters/empire/perfume_launch.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_043_Chef_Marque_Luxe.png',
+    interlocutorId: 'EM_043',
     dialogue:
         'Le nouveau parfum "Mallory Noir" est en rupture mondiale à Paris, Tokyo et Dubaï. Les marges nettes dépassent quatre-vingt-dix pour cent.',
     leftChoice: ChoiceImpact(
@@ -1122,7 +1165,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Horace Bell',
     speakerRole: 'Détenu n° 88412',
-    speakerAvatar: 'assets/images/characters/empire/horace_prison.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_002_Horace_Bell.png',
+    interlocutorId: 'EM_002',
     dialogue:
         'Horace, vieilli et tremblant sous l\'uniforme pénitentiaire : "Tu as tout pris... Mon nom, mes usines, mes milliards..."',
     leftChoice: ChoiceImpact(
@@ -1147,7 +1191,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Commissaire-Priseur',
     speakerRole: 'Enchères publiques',
-    speakerAvatar: 'assets/images/characters/empire/auctioneer.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_045_Commissaire_Priseur.png',
+    interlocutorId: 'EM_045',
     dialogue:
         'Le terrain calciné de l\'ancien Velvet Lounge est vendu aux enchères judiciaires. Vous pouvez raser ces ruines pour ériger la Tour Mallory.',
     leftChoice: ChoiceImpact(
@@ -1173,7 +1218,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Consortium d\'Asie',
     speakerRole: 'Partenaires maritimes discrets',
-    speakerAvatar: 'assets/images/characters/empire/asian_consortium.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_046_Consortium_Asie.png',
+    interlocutorId: 'EM_046',
     dialogue:
         'Notre flotte de porte-conteneurs propose de fluidifier vos exportations asiatiques sans la moindre interférence douanière.',
     leftChoice: ChoiceImpact(
@@ -1198,7 +1244,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Le Gouverneur',
     speakerRole: 'Pouvoir exécutif',
-    speakerAvatar: 'assets/images/characters/empire/governor.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_047_Gouverneur.png',
+    interlocutorId: 'EM_047',
     dialogue:
         'Le Gouverneur porte un toast : "Madame Bell, votre fondation et vos investissements sont désormais la colonne vertébrale de cet État."',
     leftChoice: ChoiceImpact(
@@ -1224,7 +1271,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Jules Bell',
     speakerRole: 'Frère brisé',
-    speakerAvatar: 'assets/images/characters/empire/jules_begging.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_008_Jules_Bell.png',
+    interlocutorId: 'EM_008',
     dialogue:
         'Jules réapparaît au manoir, amaigri et tremblant : "Mallory... Accorde-moi un poste subalterne aux docks... Je n\'ai plus rien au monde."',
     leftChoice: ChoiceImpact(
@@ -1249,7 +1297,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Président du Sommet',
     speakerRole: 'Consécration internationale',
-    speakerAvatar: 'assets/images/characters/empire/luxury_summit.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_049_President_Sommet.png',
+    interlocutorId: 'EM_049',
     dialogue:
         'À Genève, vous recevez le prix de Dirigeante Mondiale de l\'Année. Les plus puissants capitaines d\'industrie s\'inclinent devant vous.',
     leftChoice: ChoiceImpact(
@@ -1274,7 +1323,8 @@ final List<GameCard> initialEmpireDeck = [
     campaign: 'EMPIRE',
     speakerName: 'Mallory Bell',
     speakerRole: 'Impératrice absolue',
-    speakerAvatar: 'assets/images/characters/empire/mallory_sovereign.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_050_Mallory_Bell.png',
+    interlocutorId: 'EM_050',
     dialogue:
         'Depuis la verrière sommitale dominant l\'océan, je contemple mon domaine. Plus personne n\'osera défier mon nom. L\'Ombre et la Beauté m\'appartiennent.',
     leftChoice: ChoiceImpact(

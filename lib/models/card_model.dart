@@ -139,6 +139,9 @@ class GameCard {
   /// Dialogue or narration displayed on the card.
   final String dialogue;
 
+  /// Optional canonical interlocutor ID (e.g., "ST_004", "EM_002").
+  final String? interlocutorId;
+
   /// Consequence triggered on left swipe.
   final ChoiceImpact leftChoice;
 
@@ -160,6 +163,7 @@ class GameCard {
     required this.dialogue,
     required this.leftChoice,
     required this.rightChoice,
+    this.interlocutorId,
     this.requiredFlags = const <String>[],
     this.forbiddenFlags = const <String>[],
   });
@@ -186,6 +190,7 @@ class GameCard {
     String? speakerRole,
     String? speakerAvatar,
     String? dialogue,
+    String? interlocutorId,
     ChoiceImpact? leftChoice,
     ChoiceImpact? rightChoice,
     List<String>? requiredFlags,
@@ -198,6 +203,7 @@ class GameCard {
       speakerRole: speakerRole ?? this.speakerRole,
       speakerAvatar: speakerAvatar ?? this.speakerAvatar,
       dialogue: dialogue ?? this.dialogue,
+      interlocutorId: interlocutorId ?? this.interlocutorId,
       leftChoice: leftChoice ?? this.leftChoice,
       rightChoice: rightChoice ?? this.rightChoice,
       requiredFlags: requiredFlags ?? this.requiredFlags,
@@ -211,6 +217,7 @@ class GameCard {
         'speakerName': speakerName,
         'speakerRole': speakerRole,
         'speakerAvatar': speakerAvatar,
+        if (interlocutorId != null) 'interlocutorId': interlocutorId,
         'dialogue': dialogue,
         'leftChoice': leftChoice.toJson(),
         'rightChoice': rightChoice.toJson(),
@@ -225,6 +232,7 @@ class GameCard {
       speakerName: json['speakerName'] as String? ?? '',
       speakerRole: json['speakerRole'] as String? ?? '',
       speakerAvatar: json['speakerAvatar'] as String? ?? '',
+      interlocutorId: json['interlocutorId'] as String?,
       dialogue: json['dialogue'] as String? ?? '',
       leftChoice: ChoiceImpact.fromJson(
         json['leftChoice'] as Map<String, dynamic>? ?? const <String, dynamic>{},
@@ -253,6 +261,7 @@ class GameCard {
           speakerName == other.speakerName &&
           speakerRole == other.speakerRole &&
           speakerAvatar == other.speakerAvatar &&
+          interlocutorId == other.interlocutorId &&
           dialogue == other.dialogue &&
           leftChoice == other.leftChoice &&
           rightChoice == other.rightChoice &&
@@ -266,6 +275,7 @@ class GameCard {
         speakerName,
         speakerRole,
         speakerAvatar,
+        interlocutorId,
         dialogue,
         leftChoice,
         rightChoice,
@@ -275,5 +285,5 @@ class GameCard {
 
   @override
   String toString() =>
-      'GameCard(id: "$id", campaign: "$campaign", speaker: "$speakerName ($speakerRole)")';
+      'GameCard(id: "$id", interlocutor: "$interlocutorId", campaign: "$campaign", speaker: "$speakerName ($speakerRole)")';
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/constants/app_colors.dart';
+import '../../data/character_registry.dart';
 import '../../models/card_model.dart';
 
 /// Reusable neo-noir card presentation for Reign-style swipe interaction.
@@ -85,14 +86,18 @@ class SwipeCardView extends StatelessWidget {
                       // Atmospheric portrait container
                       Container(
                         color: const Color(0xFF1E222D),
-                        child: card.speakerAvatar.isNotEmpty
-                            ? Image.asset(
-                                card.speakerAvatar,
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) =>
-                                    _buildAvatarFallback(factionColor),
-                              )
-                            : _buildAvatarFallback(factionColor),
+                        child: Image.asset(
+                          CharacterAssetRegistry.getImagePathForCard(card),
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              CharacterAssetRegistry.defaultAssetPath,
+                              fit: BoxFit.cover,
+                              errorBuilder: (ctx, err, st) =>
+                                  _buildAvatarFallback(factionColor),
+                            );
+                          },
+                        ),
                       ),
 
                       // Atmospheric gradient overlay

@@ -25,7 +25,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Mère de Kimmie',
     speakerRole: 'Foyer familial',
-    speakerAvatar: 'assets/images/characters/street/mother.png',
+    speakerAvatar: 'assets/images/characters/street/ST_001_Mere_Kimmie.png',
+    interlocutorId: 'ST_001',
     dialogue:
         'Tu rapportes de l\'argent propre ce soir ou tu prends tes affaires et tu dégages de sous mon toit !',
     leftChoice: ChoiceImpact(
@@ -49,7 +50,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Gérant du Motel',
     speakerRole: 'Tenancier louche',
-    speakerAvatar: 'assets/images/characters/street/motel_manager.png',
+    speakerAvatar: 'assets/images/characters/street/ST_002_Gerant_Motel.png',
+    interlocutorId: 'ST_002',
     dialogue:
         'La chambre 14 coûte 50\$ la nuit, petite. Si t\'as pas de liquide, tu peux torcher les chiottes jusqu\'à l\'aube.',
     leftChoice: ChoiceImpact(
@@ -72,7 +74,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Gérant du Club',
     speakerRole: 'Patron du Velvet Lounge',
-    speakerAvatar: 'assets/images/characters/street/club_manager.png',
+    speakerAvatar: 'assets/images/characters/street/ST_003_Gerant_Club.png',
+    interlocutorId: 'ST_003',
     dialogue:
         'Si tu veux bosser ici, Kimmie, c\'est sur la scène centrale avec la tenue résille. Sinon, c\'est la plonge au sous-sol.',
     leftChoice: ChoiceImpact(
@@ -96,7 +99,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Rain',
     speakerRole: 'Danseuse star',
-    speakerAvatar: 'assets/images/characters/street/rain.png',
+    speakerAvatar: 'assets/images/characters/street/ST_004_Rain.png',
+    interlocutorId: 'ST_004',
     dialogue:
         'La table VIP 4 est à moi depuis six mois, gamine. Approche-toi encore et je te balaie les dents au tesson de bouteille.',
     leftChoice: ChoiceImpact(
@@ -120,7 +124,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Norman',
     speakerRole: 'Usurier & Recéleur',
-    speakerAvatar: 'assets/images/characters/street/norman.png',
+    speakerAvatar: 'assets/images/characters/street/ST_005_Norman.png',
+    interlocutorId: 'ST_005',
     dialogue:
         'Garde cette enveloppe dans ton casier jusqu\'à demain matin sans poser de questions. Il y a 3 000\$ pour ta part.',
     leftChoice: ChoiceImpact(
@@ -144,7 +149,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Petite Sœur',
     speakerRole: 'Famille',
-    speakerAvatar: 'assets/images/characters/street/sister.png',
+    speakerAvatar: 'assets/images/characters/street/ST_006_Petite_Soeur.png',
+    interlocutorId: 'ST_006',
     dialogue:
         'Kimmie... ils vont m\'exclure du lycée privé si l\'inscription de 500\$ n\'est pas réglée avant vendredi...',
     leftChoice: ChoiceImpact(
@@ -167,7 +173,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Client éméché',
     speakerRole: 'Riche habitué',
-    speakerAvatar: 'assets/images/characters/street/drunk_client.png',
+    speakerAvatar: 'assets/images/characters/street/ST_007_Client_Emeche.png',
+    interlocutorId: 'ST_007',
     dialogue:
         'Allez princesse, un petit tour dans ma suite à l\'hôtel Bellevue et je double ta mise de la soirée en billets bleus.',
     leftChoice: ChoiceImpact(
@@ -190,7 +197,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Contrôle de police',
     speakerRole: 'Patrouille de nuit',
-    speakerAvatar: 'assets/images/characters/street/patrol_police.png',
+    speakerAvatar: 'assets/images/characters/street/ST_008_Controle_Police.png',
+    interlocutorId: 'ST_008',
     dialogue:
         'Mains sur le mur, beauté. Qu\'est-ce qu\'une fille comme toi traîne seule dans cette ruelle à trois heures du matin ?',
     leftChoice: ChoiceImpact(
@@ -213,7 +221,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Gillian',
     speakerRole: 'Danseuse alliée',
-    speakerAvatar: 'assets/images/characters/street/gillian.png',
+    speakerAvatar: 'assets/images/characters/street/ST_009_Gillian.png',
+    interlocutorId: 'ST_009',
     dialogue:
         'Kimmie regarde ! Rain a scié les talons de tes escarpins avant ton passage sur scène... On doit faire un scandale !',
     leftChoice: ChoiceImpact(
@@ -237,7 +246,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Détective Davis',
     speakerRole: 'Brigade financière',
-    speakerAvatar: 'assets/images/characters/street/detective_davis.png',
+    speakerAvatar: 'assets/images/characters/street/ST_010_Detective_Davis.png',
+    interlocutorId: 'ST_010',
     dialogue:
         'Je sais que le Velvet Lounge blanchit l\'argent des Bell Cosmetics. Donne-moi les registres et ta famille sera intouchable.',
     leftChoice: ChoiceImpact(
@@ -265,7 +275,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Jules Bell',
     speakerRole: 'Héritier Bell Logistics',
-    speakerAvatar: 'assets/images/characters/street/jules_vip.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_008_Jules_Bell.png',
+    interlocutorId: 'EM_008',
     dialogue:
         'Apporte une bouteille de Dom Pérignon et ferme le rideau, beauté. On a des chiffres confidentiels à fêter.',
     leftChoice: ChoiceImpact(
@@ -290,7 +301,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Roy Bell',
     speakerRole: 'Le cogneur des Bell',
-    speakerAvatar: 'assets/images/characters/street/roy_rage.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_004_Roy_Bell.png',
+    interlocutorId: 'EM_004',
     dialogue:
         'Où est ma sacoche en cuir ?! Si une de ces traînées y a touché, je réduis ce club en cendres dans l\'heure !',
     leftChoice: ChoiceImpact(
@@ -317,7 +329,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Banquette VIP',
     speakerRole: 'Preuve compromettante',
-    speakerAvatar: 'assets/images/characters/street/usb_key.png',
+    speakerAvatar: 'assets/images/characters/street/ST_013_Banquette_VIP.png',
+    interlocutorId: 'ST_013',
     dialogue:
         'Dans la panique de Roy, une clé USB sertie d\'or noir gît sur le velours pourpre. Ses fichiers portent le sceau Bell Cosmetics.',
     leftChoice: ChoiceImpact(
@@ -343,7 +356,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Gérant du Club',
     speakerRole: 'Patron du Velvet Lounge',
-    speakerAvatar: 'assets/images/characters/street/club_manager.png',
+    speakerAvatar: 'assets/images/characters/street/ST_003_Gerant_Club.png',
+    interlocutorId: 'ST_003',
     dialogue:
         'Roy Bell prétend qu\'on lui a tiré un objet crucial. Si je découvre que c\'est une de mes filles, je la jette aux dobermans.',
     leftChoice: ChoiceImpact(
@@ -369,7 +383,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Cipher',
     speakerRole: 'Hacker underground',
-    speakerAvatar: 'assets/images/characters/street/cipher.png',
+    speakerAvatar: 'assets/images/characters/street/ST_015_Cipher.png',
+    interlocutorId: 'ST_015',
     dialogue:
         'Cette clé contient la double comptabilité des Bell et la formule d\'une toxine masquée. Tu veux que je craque le code ?',
     requiredFlags: ['kimmie_a_la_cle'],
@@ -397,7 +412,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Rain',
     speakerRole: 'Rival du bar',
-    speakerAvatar: 'assets/images/characters/street/rain.png',
+    speakerAvatar: 'assets/images/characters/street/ST_004_Rain.png',
+    interlocutorId: 'ST_004',
     dialogue:
         'J\'ai vu que tu avais récupéré le matos de Roy. Vends-le moi et on partage 50 000\$. Sinon je parle à Mallory Bell.',
     leftChoice: ChoiceImpact(
@@ -423,7 +439,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Détective Davis',
     speakerRole: 'Brigade financière',
-    speakerAvatar: 'assets/images/characters/street/detective_davis.png',
+    speakerAvatar: 'assets/images/characters/street/ST_010_Detective_Davis.png',
+    interlocutorId: 'ST_010',
     dialogue:
         'Kimmie, les Bell sont en panique. Si tu as ce qu\'ils cherchent, donne-le-moi avant que leurs tueurs ne te nettoient.',
     leftChoice: ChoiceImpact(
@@ -450,7 +467,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Norman',
     speakerRole: 'Usurier & Recéleur',
-    speakerAvatar: 'assets/images/characters/street/norman.png',
+    speakerAvatar: 'assets/images/characters/street/ST_005_Norman.png',
+    interlocutorId: 'ST_005',
     dialogue:
         'Les hommes de Roy arpentent le quartier. Pour 800\$, j\'ai un calibre 9mm sans numéro de série sous le comptoir.',
     leftChoice: ChoiceImpact(
@@ -476,7 +494,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Petite Sœur',
     speakerRole: 'Famille en danger',
-    speakerAvatar: 'assets/images/characters/street/sister.png',
+    speakerAvatar: 'assets/images/characters/street/ST_006_Petite_Soeur.png',
+    interlocutorId: 'ST_006',
     dialogue:
         'Kimmie ! Un homme en costume noir m\'attendait devant le lycée... Il m\'a dit de te demander si la clé brillait toujours !',
     leftChoice: ChoiceImpact(
@@ -502,7 +521,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Sbires des Bell',
     speakerRole: 'Escadron de Roy',
-    speakerAvatar: 'assets/images/characters/street/bell_goons.png',
+    speakerAvatar: 'assets/images/characters/street/ST_020_Sbires_Bell.png',
+    interlocutorId: 'ST_020',
     dialogue:
         'Doucement, poupée. M. Bell veut juste récupérer son bien. Entre dans la berline sans crier.',
     leftChoice: ChoiceImpact(
@@ -532,7 +552,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Réceptionniste',
     speakerRole: 'Refuge miteux',
-    speakerAvatar: 'assets/images/characters/street/motel_night.png',
+    speakerAvatar: 'assets/images/characters/street/ST_021_Receptionniste.png',
+    interlocutorId: 'ST_021',
     dialogue:
         'Deux costards surveillent l\'entrée principale. Pour 100\$ de pourboire, je te fais sortir par la cour arrière.',
     leftChoice: ChoiceImpact(
@@ -557,7 +578,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Détective Davis',
     speakerRole: 'Enquêteur sous pression',
-    speakerAvatar: 'assets/images/characters/street/detective_davis.png',
+    speakerAvatar: 'assets/images/characters/street/ST_010_Detective_Davis.png',
+    interlocutorId: 'ST_010',
     dialogue:
         'Le procureur étouffe mes mandats. Pour coincer Mallory Bell, il faut déposer les doubles des bordereaux sur son bureau.',
     leftChoice: ChoiceImpact(
@@ -583,7 +605,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Gillian',
     speakerRole: 'Danseuse alliée',
-    speakerAvatar: 'assets/images/characters/street/gillian.png',
+    speakerAvatar: 'assets/images/characters/street/ST_015_Cipher.png',
+    interlocutorId: 'ST_015',
     dialogue:
         'J\'ai chipé le pass magnétique d\'un cadre de Bell Cosmetics hier soir au club. Tu peux entrer par le quai de chargement !',
     leftChoice: ChoiceImpact(
@@ -609,7 +632,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Agent corrompu',
     speakerRole: 'Flic sur la sellette',
-    speakerAvatar: 'assets/images/characters/street/corrupt_cop.png',
+    speakerAvatar: 'assets/images/characters/street/ST_024_Agent_Corrompu.png',
+    interlocutorId: 'ST_024',
     dialogue:
         'Davis ne te sauvera pas. Les Bell possèdent la moitié de la préfecture. Dis-moi où est la planque et je te laisse partir.',
     leftChoice: ChoiceImpact(
@@ -635,7 +659,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Norman',
     speakerRole: 'Recéleur du port',
-    speakerAvatar: 'assets/images/characters/street/norman.png',
+    speakerAvatar: 'assets/images/characters/street/ST_005_Norman.png',
+    interlocutorId: 'ST_005',
     dialogue:
         'Un faux passeport canadien et un billet de ferry. 5 000\$ et ton nom disparaît des radars pour toujours.',
     leftChoice: ChoiceImpact(
@@ -661,7 +686,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Rain',
     speakerRole: 'Ennemie en déroute',
-    speakerAvatar: 'assets/images/characters/street/rain.png',
+    speakerAvatar: 'assets/images/characters/street/ST_004_Rain.png',
+    interlocutorId: 'ST_004',
     dialogue:
         'Roy m\'a battue... Il sait que je t\'ai parlé. Cache-moi Kimmie, par pitié ! Je te donnerai les codes du coffre VIP !',
     leftChoice: ChoiceImpact(
@@ -687,7 +713,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Vidéosurveillance',
     speakerRole: 'Archives numériques',
-    speakerAvatar: 'assets/images/characters/street/cctv_server.png',
+    speakerAvatar: 'assets/images/characters/street/ST_027_Videosurveillance.png',
+    interlocutorId: 'ST_027',
     dialogue:
         'Le serveur interne filme le transfert quotidien des valises de cash vers le manoir Bell. L\'effacer ou l\'extraire ?',
     leftChoice: ChoiceImpact(
@@ -713,7 +740,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Marco',
     speakerRole: 'Confident du bar',
-    speakerAvatar: 'assets/images/characters/street/bartender_marco.png',
+    speakerAvatar: 'assets/images/characters/street/ST_028_Marco.png',
+    interlocutorId: 'ST_028',
     dialogue:
         'Kimmie, deux tueurs de Salazar rôdent autour de la scène. Ils attendent que la musique monte pour te faire disparaître.',
     leftChoice: ChoiceImpact(
@@ -739,7 +767,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Don Salazar',
     speakerRole: 'Parrain du Cartel',
-    speakerAvatar: 'assets/images/characters/street/salazar.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_021_Don_Salazar.png',
+    interlocutorId: 'EM_021',
     dialogue:
         'Les Bell nous doivent dix millions. Donne-moi leur clé de blanchiment et je ferai de toi la gérante de tous les clubs.',
     leftChoice: ChoiceImpact(
@@ -765,7 +794,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Panne secteur',
     speakerRole: 'Nuit noire',
-    speakerAvatar: 'assets/images/characters/street/blackout.png',
+    speakerAvatar: 'assets/images/characters/street/ST_030_Panne_Secteur.png',
+    interlocutorId: 'ST_030',
     dialogue:
         'Toute la ruelle sombre dans le noir. Des sirènes au loin et des bruits de culasse résonnent sur le trottoir humide.',
     leftChoice: ChoiceImpact(
@@ -794,7 +824,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Roy Bell',
     speakerRole: 'Psychopathe déchaîné',
-    speakerAvatar: 'assets/images/characters/street/roy_fire.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_004_Roy_Bell.png',
+    interlocutorId: 'EM_004',
     dialogue:
         'Puisque cette garce refuse de cracher la clé, on brûle tout ! Danseuses, clients, registres : en cendres !',
     leftChoice: ChoiceImpact(
@@ -821,7 +852,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Incendie du Velvet',
     speakerRole: 'Piège de flammes',
-    speakerAvatar: 'assets/images/characters/street/club_fire.png',
+    speakerAvatar: 'assets/images/characters/street/ST_032_Incendie_Velvet.png',
+    interlocutorId: 'ST_032',
     dialogue:
         'Les rideaux de velours s\'embrasent instantanément. Les sorties de secours sont cadenassées par l\'extérieur !',
     leftChoice: ChoiceImpact(
@@ -846,7 +878,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Sbire armé',
     speakerRole: 'Prise d\'otage',
-    speakerAvatar: 'assets/images/characters/street/hostage.png',
+    speakerAvatar: 'assets/images/characters/street/ST_033_Sbire_Arme.png',
+    interlocutorId: 'ST_033',
     dialogue:
         'Un homme de Roy retient ta sœur près des réserves : "Lâche ton arme immédiatement ou elle brûle vive !"',
     leftChoice: ChoiceImpact(
@@ -873,7 +906,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Gérant du Club',
     speakerRole: 'Agonisant dans les braises',
-    speakerAvatar: 'assets/images/characters/street/manager_dying.png',
+    speakerAvatar: 'assets/images/characters/street/ST_003_Gerant_Club.png',
+    interlocutorId: 'ST_003',
     dialogue:
         'Kimmie... Le coffre fort... Le code c\'est 4409... Mallory Bell nous a tous trahis depuis le départ...',
     leftChoice: ChoiceImpact(
@@ -899,7 +933,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'SWAT & Pompiers',
     speakerRole: 'Cordon tactique',
-    speakerAvatar: 'assets/images/characters/street/swat_sirens.png',
+    speakerAvatar: 'assets/images/characters/street/ST_035_SWAT_Pompiers.png',
+    interlocutorId: 'ST_035',
     dialogue:
         'Le SWAT déploie le cordon de sécurité autour du brasier. Deux tireurs d\'élite scrutent les toits de la ruelle.',
     leftChoice: ChoiceImpact(
@@ -924,7 +959,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Jules Bell',
     speakerRole: 'Héritier en panique',
-    speakerAvatar: 'assets/images/characters/street/jules_escape.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_008_Jules_Bell.png',
+    interlocutorId: 'EM_008',
     dialogue:
         'Kimmie ! Monte avec moi ! J\'ai 5 millions en obligations dans le coffre, on oublie tout et on file à Miami !',
     leftChoice: ChoiceImpact(
@@ -950,7 +986,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Gillian',
     speakerRole: 'Alliée rescapée',
-    speakerAvatar: 'assets/images/characters/street/gillian_injured.png',
+    speakerAvatar: 'assets/images/characters/street/ST_005_Norman.png',
+    interlocutorId: 'ST_005',
     dialogue:
         'On est vivantes Kimmie... On a tout perdu, mais toute la presse est massée sur le boulevard. Parle aux caméras !',
     leftChoice: ChoiceImpact(
@@ -976,7 +1013,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Détective Davis',
     speakerRole: 'Allié réhabilité',
-    speakerAvatar: 'assets/images/characters/street/detective_davis.png',
+    speakerAvatar: 'assets/images/characters/street/ST_010_Detective_Davis.png',
+    interlocutorId: 'ST_010',
     dialogue:
         'Grâce à toi, le FBI a pris la main. Roy Bell est neutralisé. Mais Mallory a engagé les plus grands ténors du pays.',
     leftChoice: ChoiceImpact(
@@ -1002,7 +1040,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Horace Bell',
     speakerRole: 'Patriarche aux abois',
-    speakerAvatar: 'assets/images/characters/street/horace_call.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_002_Horace_Bell.png',
+    interlocutorId: 'EM_002',
     dialogue:
         'Nommez votre prix, jeune fille. Un million ? Deux ? Dites aux jurés que Roy a agi seul dans un accès de folie.',
     leftChoice: ChoiceImpact(
@@ -1028,7 +1067,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Chambre forte',
     speakerRole: 'Veille d\'audience',
-    speakerAvatar: 'assets/images/characters/street/safehouse.png',
+    speakerAvatar: 'assets/images/characters/street/ST_040_Chambre_Forte.png',
+    interlocutorId: 'ST_040',
     dialogue:
         'Demain matin s\'ouvre le procès préliminaire au Tribunal Fédéral. Le destin du syndicat de la nuit se joue maintenant.',
     leftChoice: ChoiceImpact(
@@ -1057,7 +1097,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Président du Jury',
     speakerRole: 'Chambre de justice',
-    speakerAvatar: 'assets/images/characters/street/jury.png',
+    speakerAvatar: 'assets/images/characters/street/ST_041_President_Jury.png',
+    interlocutorId: 'ST_041',
     dialogue:
         'Kimmie, sous serment : avez-vous vu Mallory Bell signer les transferts de fonds occultes issus du Velvet Lounge ?',
     leftChoice: ChoiceImpact(
@@ -1083,7 +1124,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Avocat Bell',
     speakerRole: 'Ténor du barreau',
-    speakerAvatar: 'assets/images/characters/street/defense_lawyer.png',
+    speakerAvatar: 'assets/images/characters/street/ST_042_Avocat_Bell.png',
+    interlocutorId: 'ST_042',
     dialogue:
         'Cette fille n\'est qu\'une effeuilleuse de cabaret sans scrupules, renvoyée par sa propre mère pour vols répétés !',
     leftChoice: ChoiceImpact(
@@ -1108,7 +1150,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Mallory Bell',
     speakerRole: 'L\'Impératrice sur le banc',
-    speakerAvatar: 'assets/images/characters/street/mallory_glare.png',
+    speakerAvatar: 'assets/images/characters/empire/EM_050_Mallory_Bell.png',
+    interlocutorId: 'EM_050',
     dialogue:
         'Mallory me fixe depuis le banc des accusés. Ses lèvres murmurent sans bruit : "Tu as brûlé notre foyer, mais tu resteras une moins-que-rien."',
     leftChoice: ChoiceImpact(
@@ -1133,7 +1176,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Procureur fédéral',
     speakerRole: 'Programme de protection',
-    speakerAvatar: 'assets/images/characters/street/federal_prosecutor.png',
+    speakerAvatar: 'assets/images/characters/street/ST_044_Procureur_Federal.png',
+    interlocutorId: 'ST_044',
     dialogue:
         'Nouvelle identité en Oregon et bourse d\'études pour votre sœur. Mais vous ne remettrez plus jamais les pieds dans cette métropole.',
     leftChoice: ChoiceImpact(
@@ -1159,7 +1203,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Mère de Kimmie',
     speakerRole: 'Foyer réconcilié',
-    speakerAvatar: 'assets/images/characters/street/mother_repentant.png',
+    speakerAvatar: 'assets/images/characters/street/ST_005_Norman.png',
+    interlocutorId: 'ST_005',
     dialogue:
         'Kimmie... Je t\'ai vue aux informations. Tu as renversé ces monstres. Pardonne-moi de t\'avoir chassée sous la pluie...',
     leftChoice: ChoiceImpact(
@@ -1184,7 +1229,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Collectif Danseuses',
     speakerRole: 'Mouvement autonome',
-    speakerAvatar: 'assets/images/characters/street/union_dancers.png',
+    speakerAvatar: 'assets/images/characters/street/ST_046_Collectif_Danseuses.png',
+    interlocutorId: 'ST_046',
     dialogue:
         'Kimmie, les artistes des cabarets fondent un syndicat autonome ! On veut que tu sois notre porte-parole officielle !',
     leftChoice: ChoiceImpact(
@@ -1210,7 +1256,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Le Greffier',
     speakerRole: 'Palais de justice',
-    speakerAvatar: 'assets/images/characters/street/verdict.png',
+    speakerAvatar: 'assets/images/characters/street/ST_047_Le_Greffier.png',
+    interlocutorId: 'ST_047',
     dialogue:
         'Le jury déclare Roy et Horace Bell coupables d\'extorsion aggravée et d\'incendie criminel ! La peine maximale est requise.',
     leftChoice: ChoiceImpact(
@@ -1236,7 +1283,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Norman',
     speakerRole: 'Investisseur repenti',
-    speakerAvatar: 'assets/images/characters/street/norman_clean.png',
+    speakerAvatar: 'assets/images/characters/street/ST_044_Procureur_Federal.png',
+    interlocutorId: 'ST_044',
     dialogue:
         'J\'ai racheté un lounge chic sur la marina, 100% légal. 50% des parts t\'attendent si tu rejoins l\'aventure.',
     leftChoice: ChoiceImpact(
@@ -1262,7 +1310,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Petite Sœur',
     speakerRole: 'Avenir racheté',
-    speakerAvatar: 'assets/images/characters/street/sister_grad.png',
+    speakerAvatar: 'assets/images/characters/street/ST_006_Petite_Soeur.png',
+    interlocutorId: 'ST_006',
     dialogue:
         'J\'ai décroché mon diplôme d\'avocate avec félicitations ! Sans toi, Kimmie, je n\'aurais jamais survécu à la rue.',
     leftChoice: ChoiceImpact(
@@ -1287,7 +1336,8 @@ final List<GameCard> initialStreetDeck = [
     campaign: 'STREET',
     speakerName: 'Kimmie',
     speakerRole: 'Reine affranchie',
-    speakerAvatar: 'assets/images/characters/street/kimmie_sovereign.png',
+    speakerAvatar: 'assets/images/characters/street/ST_050_Kimmie.png',
+    interlocutorId: 'ST_050',
     dialogue:
         'Debout sur la corniche, les néons de la ville scintillent sous la pluie fine. La nuit ne m\'a pas brisée : j\'en suis la reine.',
     leftChoice: ChoiceImpact(

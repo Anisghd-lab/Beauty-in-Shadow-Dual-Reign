@@ -82,6 +82,9 @@ flutter:
     - assets/audio/button_click.mp3
     - assets/audio/street_ambient.mp3
     - assets/audio/empire_ambient.mp3
+    - assets/images/characters/
+    - assets/images/characters/street/
+    - assets/images/characters/empire/
     - assets/icon/
 
   # An image asset can refer to one or more resolution-specific "variants", see
