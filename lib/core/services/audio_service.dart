@@ -31,7 +31,7 @@ class AudioService extends ChangeNotifier {
 
   static const String _mutedKey = 'bis_audio_muted';
   static const double bgmDefaultVolume = 0.4;
-  static const double sfxDefaultVolume = 0.8;
+  static const double sfxDefaultVolume = 1.0;
 
   bool _isMuted = false;
   bool get isMuted => _isMuted;
