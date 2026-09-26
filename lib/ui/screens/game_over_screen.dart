@@ -165,16 +165,30 @@ class _GameOverScreenState extends State<GameOverScreen> {
                 ),
                 const SizedBox(height: 16),
 
-                // Main Title: "RÈGNE BRISÉ"
+                // Category / Ominous Header
                 Text(
                   'RÈGNE BRISÉ',
+                  key: const ValueKey('game_over_category'),
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.cinzel(
+                    color: AppColors.statusDanger.withValues(alpha: 0.8),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 3.0,
+                  ),
+                ),
+                const SizedBox(height: 6),
+
+                // Main Title: "FIN DU RÈGNE DE [Nom du Protagoniste défunt]"
+                Text(
+                  'FIN DU RÈGNE DE ${effectiveState.protagonist.name.toUpperCase()}',
                   key: const ValueKey('game_over_title'),
                   textAlign: TextAlign.center,
                   style: GoogleFonts.cinzel(
                     color: AppColors.statusDanger,
-                    fontSize: 26,
+                    fontSize: 22,
                     fontWeight: FontWeight.w900,
-                    letterSpacing: 4.0,
+                    letterSpacing: 2.2,
                     shadows: [
                       Shadow(
                         color: AppColors.statusDanger.withValues(alpha: 0.6),
@@ -185,7 +199,7 @@ class _GameOverScreenState extends State<GameOverScreen> {
                 ),
                 const SizedBox(height: 10),
 
-                // Metrics Pill: "JOURS SURVÉCUS : X"
+                // Metrics Pill: "DURÉE DU RÈGNE : X JOURS"
                 Center(
                   child: Container(
                     padding: const EdgeInsets.symmetric(
@@ -199,7 +213,7 @@ class _GameOverScreenState extends State<GameOverScreen> {
                       ),
                     ),
                     child: Text(
-                      'JOURS SURVÉCUS : ${effectiveState.dayCount}',
+                      'DURÉE DU RÈGNE : ${effectiveState.dayCount} JOURS',
                       key: const ValueKey('game_over_days'),
                       style: GoogleFonts.inter(
                         color: AppColors.textSecondary,
@@ -282,7 +296,7 @@ class _GameOverScreenState extends State<GameOverScreen> {
                 // Succession Action Buttons
                 // ==========================================
 
-                // Button 1: Recommencer ce camp
+                // Button 1: Transmettre le règne au successeur
                 ElevatedButton(
                   key: const ValueKey('btn_restart_same'),
                   onPressed: handleRestartSame,
@@ -300,11 +314,13 @@ class _GameOverScreenState extends State<GameOverScreen> {
                     elevation: 4,
                   ),
                   child: Text(
-                    'RECOMMENCER CE CAMP',
+                    'TRANSMETTRE LE RÈGNE À ${effectiveState.nextSuccessorName.toUpperCase()}',
+                    key: const ValueKey('btn_restart_text'),
+                    textAlign: TextAlign.center,
                     style: GoogleFonts.cinzel(
-                      fontSize: 12.5,
+                      fontSize: 12.0,
                       fontWeight: FontWeight.w700,
-                      letterSpacing: 1.5,
+                      letterSpacing: 1.3,
                     ),
                   ),
                 ),

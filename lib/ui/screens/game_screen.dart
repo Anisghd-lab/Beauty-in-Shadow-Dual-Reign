@@ -89,9 +89,131 @@ class _GameScreenState extends State<GameScreen> {
             // 1. Top HUD Bar (Gauges bound to real-time swipe preview)
             const GaugeBar(),
 
-            const SizedBox(height: 12),
+            const SizedBox(height: 8),
 
-            // 2. Sub-header: Status pill ("JOUR X — CAMPAGNE DE LA RUE / DE L'EMPIRE") + Audio Toggle
+            // 2. Persistent Protagonist Header Bar ("VOUS INCARNEZ : [NAME]" with "RÈGNE N°[reignNumber]")
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Container(
+                key: const ValueKey('protagonist_banner'),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12.0, vertical: 7.0),
+                decoration: BoxDecoration(
+                  color: AppColors.cardSurface,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: accentColor.withValues(alpha: 0.35),
+                    width: 1.0,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.4),
+                      blurRadius: 8,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    // Protagonist Avatar / Emblem
+                    Container(
+                      width: 32,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1E222D),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: accentColor,
+                          width: 1.5,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: accentColor.withValues(alpha: 0.4),
+                            blurRadius: 6,
+                          ),
+                        ],
+                      ),
+                      child: Icon(
+                        isStreet
+                            ? Icons.person_rounded
+                            : Icons.military_tech_rounded,
+                        size: 18,
+                        color: accentColor,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+
+                    // Protagonist Name & Title
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  'VOUS INCARNEZ : ${state.protagonist.name.toUpperCase()}',
+                                  key: const ValueKey('protagonist_name_text'),
+                                  style: GoogleFonts.cinzel(
+                                    color: AppColors.text,
+                                    fontSize: 11.5,
+                                    fontWeight: FontWeight.w800,
+                                    letterSpacing: 1.0,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              Container(
+                                key: const ValueKey('protagonist_reign_pill'),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 6.0, vertical: 1.5),
+                                decoration: BoxDecoration(
+                                  color: accentColor.withValues(alpha: 0.15),
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: accentColor.withValues(alpha: 0.4),
+                                    width: 1.0,
+                                  ),
+                                ),
+                                child: Text(
+                                  'RÈGNE N°${state.protagonist.reignNumber}',
+                                  style: GoogleFonts.cinzel(
+                                    color: accentColor,
+                                    fontSize: 9.5,
+                                    fontWeight: FontWeight.w700,
+                                    letterSpacing: 0.8,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            '${state.protagonist.title} — ${state.reignText}',
+                            key: const ValueKey('protagonist_title_text'),
+                            style: GoogleFonts.inter(
+                              color: AppColors.textSecondary,
+                              fontSize: 10.0,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: 0.4,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 8),
+
+            // 3. Sub-header: Status pill ("JOUR X — CAMPAGNE DE LA RUE / DE L'EMPIRE") + Audio Toggle
             Center(
               child: Container(
                 padding:

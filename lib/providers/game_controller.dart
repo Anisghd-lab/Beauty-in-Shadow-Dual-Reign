@@ -4,6 +4,7 @@ import '../core/services/audio_service.dart';
 import '../core/services/codex_service.dart';
 import '../models/card_model.dart';
 import '../models/game_state.dart';
+import '../models/protagonist_model.dart';
 
 /// Real-time swipe gesture preview for HUD feedback.
 enum SwipeDirection {
@@ -48,6 +49,9 @@ class GameController extends ChangeNotifier {
 
   /// Current game state (gauges, day count, flags, game over status).
   GameState get state => _state;
+
+  /// Active protagonist representing the player avatar and generational dynasty.
+  Protagonist get protagonist => _state.protagonist;
 
   /// Immutable snapshot of the registered cards in the deck.
   List<GameCard> get deck => List.unmodifiable(_deck);
@@ -293,10 +297,25 @@ class GameController extends ChangeNotifier {
 
   /// Restarts the playthrough with a clean slate for the specified [campaign].
   ///
+  /// If restarting the same campaign, advances to the next generational successor
+  /// (incrementing reign number and assigning the next heir from the pool).
+  /// If switching campaigns, initializes the respective founding protagonist.
   /// Resets gauges to 50, clears active flags, resets day count to 1,
   /// and draws a fresh starting card.
-  void restart(CampaignType campaign) {
-    _state = GameState.initial(campaign: campaign);
+  void restart(CampaignType campaign, {Protagonist? customProtagonist}) {
+    final Protagonist nextProtagonist;
+    if (customProtagonist != null) {
+      nextProtagonist = customProtagonist;
+    } else if (_state.campaign == campaign) {
+      nextProtagonist = _state.protagonist.nextSuccessor(campaign);
+    } else {
+      nextProtagonist = Protagonist.initial(campaign);
+    }
+
+    _state = GameState.initial(
+      campaign: campaign,
+      protagonist: nextProtagonist,
+    );
     _swipePreview = SwipeDirection.none;
     drawNextCard();
     notifyListeners();

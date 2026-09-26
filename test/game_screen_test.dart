@@ -75,9 +75,14 @@ void main() {
       // Check Sub-header status pill
       expect(find.text('JOUR 3 — CAMPAGNE DE LA RUE'), findsOneWidget);
 
-      // Check card content
-      expect(find.text('RAVEN TEST'), findsOneWidget);
-      expect(find.text('Lieutenante'), findsOneWidget);
+      // Check Protagonist persistent banner
+      expect(find.text('VOUS INCARNEZ : KIMMIE'), findsOneWidget);
+      expect(find.text('RÈGNE N°1'), findsOneWidget);
+      expect(find.byKey(const ValueKey('protagonist_banner')), findsOneWidget);
+
+      // Check card content & speaker badge
+      expect(find.text('INTERLOCUTEUR : RAVEN TEST — Lieutenante'), findsOneWidget);
+      expect(find.text("S'ADRESSE À VOUS :"), findsOneWidget);
       expect(find.text('Le cartel nous attend au tournant.'), findsOneWidget);
 
       // Check fallback buttons
@@ -132,21 +137,26 @@ void main() {
       await tester.tap(find.byKey(const ValueKey('btn_choice_right')));
       await tester.pumpAndSettle();
 
-      // Verify Game Over screen appears
+      // Verify Game Over screen appears with succession details
       expect(controller.isGameOver, isTrue);
-      expect(find.text('RÈGNE BRISÉ'), findsOneWidget);
-      expect(find.text('JOURS SURVÉCUS : 6'), findsOneWidget);
+      expect(find.text('FIN DU RÈGNE DE KIMMIE'), findsOneWidget);
+      expect(find.text('DURÉE DU RÈGNE : 6 JOURS'), findsOneWidget);
+      expect(find.text('TRANSMETTRE LE RÈGNE À LEXIE'), findsOneWidget);
       expect(find.byKey(const ValueKey('btn_restart_same')), findsOneWidget);
       expect(find.byKey(const ValueKey('btn_switch_campaign')), findsOneWidget);
 
-      // Tap restart same campaign button
+      // Tap restart same campaign button to trigger succession
       await tester.tap(find.byKey(const ValueKey('btn_restart_same')));
       await tester.pumpAndSettle();
 
-      // Should be back to active game screen
+      // Should be back to active game screen with generation 2 successor
       expect(controller.isGameOver, isFalse);
       expect(controller.state.dayCount, 1);
       expect(controller.state.gauge1, 50);
+      expect(controller.state.protagonist.name, 'Lexie');
+      expect(controller.state.protagonist.reignNumber, 2);
+      expect(find.text('VOUS INCARNEZ : LEXIE'), findsOneWidget);
+      expect(find.text('RÈGNE N°2'), findsOneWidget);
       expect(find.text('JOUR 1 — CAMPAGNE DE LA RUE'), findsOneWidget);
     });
   });

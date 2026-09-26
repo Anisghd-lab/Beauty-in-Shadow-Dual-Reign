@@ -265,5 +265,58 @@ void main() {
       expect(controller.currentCard!.campaign, 'EMPIRE');
       expect(controller.currentCard!.id, 'empire_card_1');
     });
+
+    test('Initializes with default protagonist and advances generational succession on restart', () {
+      final deck = createTestDeck();
+      final controller = GameController(deck: deck);
+
+      // Street default protagonist: Kimmie, Reign #1
+      expect(controller.protagonist.name, 'Kimmie');
+      expect(controller.protagonist.reignNumber, 1);
+      expect(controller.protagonist.title, 'Danseuse en Cavale');
+      expect(controller.state.nextSuccessorName, 'Lexie');
+
+      // Restart in same campaign -> Succession to Lexie (Reign #2)
+      controller.restart(CampaignType.street);
+
+      expect(controller.protagonist.name, 'Lexie');
+      expect(controller.protagonist.reignNumber, 2);
+      expect(controller.state.nextSuccessorName, 'Raven');
+
+      // Restart again -> Succession to Raven (Reign #3)
+      controller.restart(CampaignType.street);
+
+      expect(controller.protagonist.name, 'Raven');
+      expect(controller.protagonist.reignNumber, 3);
+      expect(controller.state.nextSuccessorName, 'Skye');
+
+      // Restart again -> Succession to Skye (Reign #4)
+      controller.restart(CampaignType.street);
+
+      expect(controller.protagonist.name, 'Skye');
+      expect(controller.protagonist.reignNumber, 4);
+      expect(controller.state.nextSuccessorName, 'Maya');
+    });
+
+    test('Empire campaign initializes with Mallory Bell and cycles through aristocratic dynasty', () {
+      final deck = createTestDeck();
+      final controller = GameController(
+        initialState: GameState.initial(campaign: CampaignType.empire),
+        deck: deck,
+      );
+
+      // Empire default protagonist: Mallory Bell, Reign #1
+      expect(controller.protagonist.name, 'Mallory Bell');
+      expect(controller.protagonist.reignNumber, 1);
+      expect(controller.protagonist.title, 'Héritière Contestée');
+      expect(controller.state.nextSuccessorName, 'Victoria Bell');
+
+      // Restart Empire -> Succession to Victoria Bell (Reign #2)
+      controller.restart(CampaignType.empire);
+
+      expect(controller.protagonist.name, 'Victoria Bell');
+      expect(controller.protagonist.reignNumber, 2);
+      expect(controller.state.nextSuccessorName, 'Cassandra Bell');
+    });
   });
 }

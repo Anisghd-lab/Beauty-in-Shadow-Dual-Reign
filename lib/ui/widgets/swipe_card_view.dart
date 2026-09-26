@@ -115,9 +115,10 @@ class SwipeCardView extends StatelessWidget {
                 ),
 
                 // 2. Middle Badge Strip
+                // 2. Middle Badge Strip ("INTERLOCUTEUR : [speakerName] — [speakerRole]")
                 Container(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                      const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0),
                   decoration: BoxDecoration(
                     color: AppColors.darkSurface.withValues(alpha: 0.95),
                     border: Border.symmetric(
@@ -146,33 +147,16 @@ class SwipeCardView extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
 
-                      // Speaker Name
+                      // Speaker Badge & Identity
                       Expanded(
                         child: Text(
-                          card.speakerName.toUpperCase(),
+                          'INTERLOCUTEUR : ${card.speakerName.toUpperCase()} — ${card.speakerRole}',
                           key: const ValueKey('card_speaker_name'),
                           style: GoogleFonts.cinzel(
                             color: AppColors.text,
-                            fontSize: 12.5,
+                            fontSize: 11.0,
                             fontWeight: FontWeight.w700,
-                            letterSpacing: 1.4,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-
-                      // Speaker Role
-                      Flexible(
-                        child: Text(
-                          card.speakerRole,
-                          key: const ValueKey('card_speaker_role'),
-                          style: TextStyle(
-                            color: secondaryAccent,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 0.6,
+                            letterSpacing: 1.0,
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -187,21 +171,48 @@ class SwipeCardView extends StatelessWidget {
                   flex: 4,
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0, vertical: 16.0),
+                        horizontal: 20.0, vertical: 14.0),
                     alignment: Alignment.center,
                     color: AppColors.darkSurface.withValues(alpha: 0.5),
                     child: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
-                      child: Text(
-                        card.dialogue,
-                        key: const ValueKey('card_dialogue_text'),
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.inter(
-                          color: AppColors.text,
-                          fontSize: 14.5,
-                          height: 1.45,
-                          fontWeight: FontWeight.w400,
-                        ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.record_voice_over_rounded,
+                                size: 12,
+                                color: secondaryAccent.withValues(alpha: 0.7),
+                              ),
+                              const SizedBox(width: 5),
+                              Text(
+                                "S'ADRESSE À VOUS :",
+                                key: const ValueKey('dialogue_prefix'),
+                                style: GoogleFonts.cinzel(
+                                  color: secondaryAccent.withValues(alpha: 0.8),
+                                  fontSize: 9.5,
+                                  fontWeight: FontWeight.w700,
+                                  letterSpacing: 1.3,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            card.dialogue,
+                            key: const ValueKey('card_dialogue_text'),
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.inter(
+                              color: AppColors.text,
+                              fontSize: 14.0,
+                              height: 1.45,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

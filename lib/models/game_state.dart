@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'card_model.dart';
+import 'protagonist_model.dart';
 
 /// Available campaign faction modes in Dual Reign.
 enum CampaignType {
@@ -88,6 +89,9 @@ class GameState {
   /// Active story flags unlocked by previous card choices.
   Set<String> activeFlags;
 
+  /// Active protagonist representing the player avatar and dynastic generational lineage.
+  Protagonist protagonist;
+
   /// Whether the current run has ended in defeat/death.
   bool isGameOver;
 
@@ -105,13 +109,18 @@ class GameState {
     this.gauge4 = defaultGaugeValue,
     this.dayCount = 1,
     Set<String>? activeFlags,
+    Protagonist? protagonist,
     this.isGameOver = false,
     this.deathReason,
     this.deathMessage,
-  }) : activeFlags = activeFlags ?? <String>{};
+  })  : activeFlags = activeFlags ?? <String>{},
+        protagonist = protagonist ?? Protagonist.initial(campaign);
 
   /// Factory constructor to start a fresh playthrough.
-  factory GameState.initial({CampaignType campaign = CampaignType.street}) {
+  factory GameState.initial({
+    CampaignType campaign = CampaignType.street,
+    Protagonist? protagonist,
+  }) {
     return GameState(
       campaign: campaign,
       gauge1: defaultGaugeValue,
@@ -120,6 +129,7 @@ class GameState {
       gauge4: defaultGaugeValue,
       dayCount: 1,
       activeFlags: <String>{},
+      protagonist: protagonist ?? Protagonist.initial(campaign),
       isGameOver: false,
     );
   }
@@ -191,6 +201,8 @@ class GameState {
     final newGauge4 = (gauge4 + impact.deltaGauge4).clamp(minGaugeValue, maxGaugeValue);
 
     final updatedFlags = Set<String>.from(activeFlags)..addAll(impact.setFlags);
+    final updatedProtagonist =
+        protagonist.withUpdatedTitle(updatedFlags, campaign);
 
     final nextState = copyWith(
       gauge1: newGauge1,
@@ -199,6 +211,7 @@ class GameState {
       gauge4: newGauge4,
       dayCount: dayCount + 1,
       activeFlags: updatedFlags,
+      protagonist: updatedProtagonist,
     );
 
     return nextState.checkStatus();
@@ -253,6 +266,12 @@ class GameState {
     }
   }
 
+  /// The name of the next generational heir/successor who will take over if the current reign falls.
+  String get nextSuccessorName => protagonist.getNextSuccessorName(campaign);
+
+  /// Dynamic reign summary description (e.g., "Jour 12 du règne de Kimmie").
+  String get reignText => protagonist.getReignDurationText(dayCount);
+
   GameState copyWith({
     CampaignType? campaign,
     int? gauge1,
@@ -261,6 +280,7 @@ class GameState {
     int? gauge4,
     int? dayCount,
     Set<String>? activeFlags,
+    Protagonist? protagonist,
     bool? isGameOver,
     GameOverReason? deathReason,
     String? deathMessage,
@@ -275,6 +295,7 @@ class GameState {
       activeFlags: activeFlags != null
           ? Set<String>.from(activeFlags)
           : Set<String>.from(this.activeFlags),
+      protagonist: protagonist ?? this.protagonist,
       isGameOver: isGameOver ?? this.isGameOver,
       deathReason: deathReason ?? this.deathReason,
       deathMessage: deathMessage ?? this.deathMessage,
@@ -289,6 +310,7 @@ class GameState {
         'gauge4': gauge4,
         'dayCount': dayCount,
         'activeFlags': activeFlags.toList(),
+        'protagonist': protagonist.toJson(),
         'isGameOver': isGameOver,
         if (deathReason != null) 'deathReason': deathReason!.name,
         if (deathMessage != null) 'deathMessage': deathMessage,
@@ -314,6 +336,11 @@ class GameState {
             .toSet() ??
         <String>{};
 
+    final protagonistJson = json['protagonist'] as Map<String, dynamic>?;
+    final protagonist = protagonistJson != null
+        ? Protagonist.fromJson(protagonistJson)
+        : Protagonist.initial(campaign);
+
     return GameState(
       campaign: campaign,
       gauge1: (json['gauge1'] as num?)?.toInt() ?? defaultGaugeValue,
@@ -322,6 +349,7 @@ class GameState {
       gauge4: (json['gauge4'] as num?)?.toInt() ?? defaultGaugeValue,
       dayCount: (json['dayCount'] as num?)?.toInt() ?? 1,
       activeFlags: flags,
+      protagonist: protagonist,
       isGameOver: json['isGameOver'] as bool? ?? false,
       deathReason: deathReason,
       deathMessage: json['deathMessage'] as String?,
@@ -340,6 +368,7 @@ class GameState {
           gauge4 == other.gauge4 &&
           dayCount == other.dayCount &&
           setEquals(activeFlags, other.activeFlags) &&
+          protagonist == other.protagonist &&
           isGameOver == other.isGameOver &&
           deathReason == other.deathReason &&
           deathMessage == other.deathMessage;
@@ -353,6 +382,7 @@ class GameState {
         gauge4,
         dayCount,
         Object.hashAll(activeFlags),
+        protagonist,
         isGameOver,
         deathReason,
         deathMessage,
@@ -360,5 +390,5 @@ class GameState {
 
   @override
   String toString() =>
-      'GameState(${campaign.name}, G: [$gauge1, $gauge2, $gauge3, $gauge4], Day: $dayCount, Over: $isGameOver)';
+      'GameState(${campaign.name}, $protagonist, G: [$gauge1, $gauge2, $gauge3, $gauge4], Day: $dayCount, Over: $isGameOver)';
 }
