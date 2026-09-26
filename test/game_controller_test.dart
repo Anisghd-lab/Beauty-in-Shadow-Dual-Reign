@@ -169,6 +169,111 @@ void main() {
       expect(controller.currentCard!.id, 'street_chained');
       expect(controller.currentCard!.speakerName, 'Boss Marcus');
     });
+
+    test('Progression engine respects chapter day thresholds and extracts card numbers', () {
+      expect(GameController.extractCardNumber('ST_001'), 1);
+      expect(GameController.extractCardNumber('ST_015'), 15);
+      expect(GameController.extractCardNumber('EM_035'), 35);
+      expect(GameController.extractCardNumber('street_card_4'), 4);
+      expect(GameController.extractCardNumber('non_numeric_card'), isNull);
+
+      expect(GameController.maxCardIndexForDay(1), 10);
+      expect(GameController.maxCardIndexForDay(5), 10);
+      expect(GameController.maxCardIndexForDay(6), 20);
+      expect(GameController.maxCardIndexForDay(12), 20);
+      expect(GameController.maxCardIndexForDay(13), 30);
+      expect(GameController.maxCardIndexForDay(22), 30);
+      expect(GameController.maxCardIndexForDay(23), 40);
+      expect(GameController.maxCardIndexForDay(35), 40);
+      expect(GameController.maxCardIndexForDay(36), 50);
+      expect(GameController.maxCardIndexForDay(100), 50);
+    });
+
+    test('drawNextCard filters out late-chapter cards during early game (Days 1-5)', () {
+      final tieredDeck = [
+        const GameCard(
+          id: 'ST_005',
+          campaign: 'STREET',
+          speakerName: 'Ch1 Contact',
+          speakerRole: 'Underworld',
+          speakerAvatar: 'assets/avatars/c1.png',
+          dialogue: 'Chapter 1 card',
+          leftChoice: ChoiceImpact(text: 'Option A'),
+          rightChoice: ChoiceImpact(text: 'Option B'),
+        ),
+        const GameCard(
+          id: 'ST_025',
+          campaign: 'STREET',
+          speakerName: 'Ch3 Contact',
+          speakerRole: 'Underworld',
+          speakerAvatar: 'assets/avatars/c3.png',
+          dialogue: 'Chapter 3 card',
+          leftChoice: ChoiceImpact(text: 'Option A'),
+          rightChoice: ChoiceImpact(text: 'Option B'),
+        ),
+      ];
+
+      final controller = GameController(
+        deck: tieredDeck,
+        initialState: GameState(campaign: CampaignType.street, dayCount: 1),
+      );
+
+      // On Day 1, only ST_005 (Ch 1) should be drawn, not ST_025 (Ch 3)
+      for (int i = 0; i < 5; i++) {
+        controller.drawNextCard();
+        expect(controller.currentCard!.id, 'ST_005');
+      }
+
+      // On Day 15 (Crisis phase, Ch 3 unlocked <= 30), ST_025 is eligible
+      controller.state.dayCount = 15;
+      final drawnIds = <String>{};
+      for (int i = 0; i < 15; i++) {
+        controller.drawNextCard();
+        drawnIds.add(controller.currentCard!.id);
+      }
+      expect(drawnIds, contains('ST_025'));
+    });
+
+    test('Dynamic Lifeline heuristic prioritizes counter-balancing cards when gauge is in danger', () {
+      final rescueDeck = [
+        const GameCard(
+          id: 'ST_002',
+          campaign: 'STREET',
+          speakerName: 'Neutral Contact',
+          speakerRole: 'Civilian',
+          speakerAvatar: 'assets/avatars/neutral.png',
+          dialogue: 'Ordinary situation',
+          leftChoice: ChoiceImpact(text: 'Left', deltaGauge1: 5, deltaGauge2: -10),
+          rightChoice: ChoiceImpact(text: 'Right', deltaGauge1: -5, deltaGauge2: -10),
+        ),
+        const GameCard(
+          id: 'ST_003',
+          campaign: 'STREET',
+          speakerName: 'Lifeline Donor',
+          speakerRole: 'Patron',
+          speakerAvatar: 'assets/avatars/donor.png',
+          dialogue: 'Here is some emergency cash!',
+          leftChoice: ChoiceImpact(text: 'Take Cash', deltaGauge2: 15),
+          rightChoice: ChoiceImpact(text: 'Decline', deltaGauge2: 10),
+        ),
+      ];
+
+      final controller = GameController(
+        deck: rescueDeck,
+        initialState: GameState(
+          campaign: CampaignType.street,
+          gauge2: 15, // Cash is critically low (<= 20)
+        ),
+      );
+
+      expect(GameController.isStateInDanger(controller.state), isTrue);
+
+      // Card draw should prioritize ST_003 as a lifeline because it restores Gauge 2
+      for (int i = 0; i < 5; i++) {
+        controller.drawNextCard();
+        expect(controller.currentCard!.id, 'ST_003');
+      }
+    });
   });
 
   group('GameController - Choice Execution & Clamping', () {

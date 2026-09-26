@@ -162,13 +162,108 @@ class GameController extends ChangeNotifier {
     }
   }
 
+  /// Extracts the numeric index from a card ID (e.g. "ST_005" -> 5, "EM_023" -> 23).
+  /// Returns null if the card ID does not contain a numeric suffix.
+  static int? extractCardNumber(String cardId) {
+    final match = RegExp(r'(?:ST_|EM_)(\d+)', caseSensitive: false).firstMatch(cardId);
+    if (match != null) {
+      return int.tryParse(match.group(1)!);
+    }
+    final genericMatch = RegExp(r'(\d+)').firstMatch(cardId);
+    if (genericMatch != null) {
+      return int.tryParse(genericMatch.group(1)!);
+    }
+    return null;
+  }
+
+  /// Returns the maximum card index accessible for the given survival [day].
+  ///
+  /// Chapter Progression Gates:
+  /// - Days 1 to 5 (Early Game): Chapter 1 introductory cards (IDs 001 to 010).
+  /// - Days 6 to 12 (Mid Game): Unlocks Chapter 2 cards (IDs 011 to 020).
+  /// - Days 13 to 22 (Crisis Phase): Unlocks Chapter 3 cards (IDs 021 to 030).
+  /// - Days 23 to 35 (Climax Phase): Unlocks Chapter 4 cards (IDs 031 to 040).
+  /// - Days 36+ (Endgame / Apex): Full deck unlocked (IDs 001 to 050).
+  static int maxCardIndexForDay(int day) {
+    if (day <= 5) return 10;
+    if (day <= 12) return 20;
+    if (day <= 22) return 30;
+    if (day <= 35) return 40;
+    return 50;
+  }
+
+  /// Checks whether any gauge is currently within the critical danger zone (<= 20 or >= 80).
+  static bool isStateInDanger(GameState state) {
+    return state.gauge1 <= 20 ||
+        state.gauge1 >= 80 ||
+        state.gauge2 <= 20 ||
+        state.gauge2 >= 80 ||
+        state.gauge3 <= 20 ||
+        state.gauge3 >= 80 ||
+        state.gauge4 <= 20 ||
+        state.gauge4 >= 80;
+  }
+
+  /// Evaluates whether a [choice] acts as a lifeline for any gauge currently in danger.
+  ///
+  /// Returns a positive recovery score if the choice helps counter-balance endangered gauges
+  /// without triggering immediate lethal boundary breaches (<= 0 or >= 100) on any gauge.
+  static int evaluateChoiceRescueScore(ChoiceImpact choice, GameState state) {
+    final postG1 = state.gauge1 + choice.deltaGauge1;
+    final postG2 = state.gauge2 + choice.deltaGauge2;
+    final postG3 = state.gauge3 + choice.deltaGauge3;
+    final postG4 = state.gauge4 + choice.deltaGauge4;
+
+    // Reject choices that lead to immediate death on any gauge
+    if (postG1 <= GameState.minGaugeValue || postG1 >= GameState.maxGaugeValue) return -999999;
+    if (postG2 <= GameState.minGaugeValue || postG2 >= GameState.maxGaugeValue) return -999999;
+    if (postG3 <= GameState.minGaugeValue || postG3 >= GameState.maxGaugeValue) return -999999;
+    if (postG4 <= GameState.minGaugeValue || postG4 >= GameState.maxGaugeValue) return -999999;
+
+    int score = 0;
+    int helpedGauges = 0;
+
+    void scoreGauge(int current, int delta) {
+      if (current <= 20) {
+        if (delta > 0) {
+          score += delta;
+          helpedGauges++;
+        } else if (delta < 0) {
+          score += delta * 2; // Penalize worsening depleted gauge heavily
+        }
+      } else if (current >= 80) {
+        if (delta < 0) {
+          score += -delta;
+          helpedGauges++;
+        } else if (delta > 0) {
+          score -= delta * 2; // Penalize worsening overflowing gauge heavily
+        }
+      }
+    }
+
+    scoreGauge(state.gauge1, choice.deltaGauge1);
+    scoreGauge(state.gauge2, choice.deltaGauge2);
+    scoreGauge(state.gauge3, choice.deltaGauge3);
+    scoreGauge(state.gauge4, choice.deltaGauge4);
+
+    return (helpedGauges > 0 && score > 0) ? score : 0;
+  }
+
+  /// Whether [card] offers at least one rescue option for the current [state].
+  static bool isRescueCard(GameCard card, GameState state) {
+    return evaluateChoiceRescueScore(card.leftChoice, state) > 0 ||
+        evaluateChoiceRescueScore(card.rightChoice, state) > 0;
+  }
+
   /// Draws the next card to present to the player.
   ///
   /// If [forceCardId] is specified, attempts to find and draw that exact card.
   /// Otherwise, filters deck cards by:
   /// 1. Campaign match ([GameCard.campaign] == current campaign key).
   /// 2. Flag eligibility ([GameCard.requiredFlags] present, [GameCard.forbiddenFlags] absent).
-  /// Then randomly selects from eligible cards.
+  /// 3. Chapter-gated day progression thresholds.
+  /// 4. Dynamic Lifeline / Rescue heuristic when gauges are in critical danger.
+  /// 5. Non-repeating card draw.
   void drawNextCard({String? forceCardId}) {
     _swipePreview = SwipeDirection.none;
 
@@ -210,17 +305,38 @@ class GameController extends ChangeNotifier {
       return;
     }
 
-    // Avoid immediately repeating the exact same card if alternatives exist
-    if (eligible.length > 1 && _currentCard != null) {
-      final nonRepeating = eligible.where((c) => c.id != _currentCard!.id).toList();
-      if (nonRepeating.isNotEmpty) {
-        _currentCard = nonRepeating[_random.nextInt(nonRepeating.length)];
-        notifyListeners();
-        return;
+    // 3. Chapter-gated progression filter
+    final maxIndex = maxCardIndexForDay(_state.dayCount);
+    final chapterFiltered = eligible.where((card) {
+      final num = extractCardNumber(card.id);
+      return num == null || num <= maxIndex;
+    }).toList();
+
+    var candidates = chapterFiltered.isNotEmpty ? chapterFiltered : eligible;
+
+    // 4. Dynamic Lifeline / Rescue Heuristic
+    if (isStateInDanger(_state)) {
+      final rescueCandidates = candidates.where((c) => isRescueCard(c, _state)).toList();
+      if (rescueCandidates.isNotEmpty) {
+        candidates = rescueCandidates;
+      } else {
+        // Broaden search to full eligible pool if current chapter lacks a lifeline
+        final broadRescue = eligible.where((c) => isRescueCard(c, _state)).toList();
+        if (broadRescue.isNotEmpty) {
+          candidates = broadRescue;
+        }
       }
     }
 
-    _currentCard = eligible[_random.nextInt(eligible.length)];
+    // 5. Avoid immediately repeating the exact same card if alternatives exist
+    if (candidates.length > 1 && _currentCard != null) {
+      final nonRepeating = candidates.where((c) => c.id != _currentCard!.id).toList();
+      if (nonRepeating.isNotEmpty) {
+        candidates = nonRepeating;
+      }
+    }
+
+    _currentCard = candidates[_random.nextInt(candidates.length)];
     notifyListeners();
   }
 
